@@ -4,9 +4,87 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Note Book</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <p>Hello World</p>
+    <header class="header">
+        <h1 class="header__title">Note Book</h1>
+        <nav class="header__nav">
+            <ul class="header__nav__list">
+                <li>Home</li>
+                <li>Logout</li>
+                <li><button class="header__add-entry">New Entry</button></li>
+            </ul>
+        </nav>
+        
+    </header>
+
+    <main class="main">
+
+        <section class="left-block">
+
+         <div class="left-block__welcome-message">
+            <h2>Welcome, Obi-Wan!</h2>
+            <h3>Here are some of your recent posts...</h3>
+        </div>   
+        
+
+        <section class="left-block__post-summary">
+            <h3 class="left-block__post-summary__summary-heading">Notes on my senior recital</h3>
+            <p class="left-block__post-summary__info"><span>In: Performances</span><span>4th July 2009</span></p>
+            <p class="left-block__post-summary-snippet">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+            <button class="left-block__post-summary__view-more">View More</button>
+        </section>
+
+        <section class="left-block__post-summary">
+                <h3 class="left-block__post-summary__summary-heading">Notes on my senior recital</h3>
+                <p class="left-block__post-summary__info"><span>In: Performances</span><span>4th July 2009</span></p>
+                <p class="left-block__post-summary-snippet">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+            </section>
+<section class="left-block__post-summary">
+                <h3 class="left-block__post-summary__summary-heading">Notes on my senior recital</h3>
+                <p class="left-block__post-summary__info"><span>In: Performances</span><span>4th July 2009</span></p>
+                <p class="left-block__post-summary-snippet">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+            </section>
+
+            <section class="left-block__post-summary">
+                    <h3 class="left-block__post-summary__summary-heading">Notes on my senior recital</h3>
+                    <p class="left-block__post-summary__info"><span>In: Performances</span><span>4th July 2009</span></p>
+                    <p class="left-block__post-summary-snippet">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                </section>
+            
+            </section>
+    
+    <section class="right-block">
+        <h3 class="right-block__title">Categories</h3>
+        <div class="right-block__categories">
+            <ul>
+                <li>Practice Sessions</li><li>Lessons</li><li>Performances</li><li>Master Classes</li>
+            </ul>
+        </div>
+    </section>
+
+
+
+
+
+
+
+</main>
+<script src="entry-view.js"></script>
 </body>
 </html>
