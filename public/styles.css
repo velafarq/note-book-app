@@ -33,8 +33,8 @@ button:hover {
 display: flex;
 width:100%;
 background-color: white;
-padding-left: 10px;
-padding-right: 10px;
+padding-left: 20px;
+padding-right: 20px;
 
 }
 .header__left {
@@ -45,6 +45,9 @@ padding-right: 10px;
     width: 100%;
 justify-content: flex-start;
 font-family: 'Raleway', sans-serif;
+}
+.fa-music {
+    color: lightgrey;
 }
 
 .header__nav{
@@ -76,21 +79,22 @@ justify-content: space-between;
 .main{
     background-color: #FAFAFA;
     display: flex;
+    padding: 20px;
     
 }
 .left-block{
-    width: 80%;
+    width: 85%;
 
 }
 .left-block__welcome-message{
     
-    width:80%;
+    /* width:80%; */
 }
 .left-block__post-summary{
-    text-align: ;
     margin: 5px;
     padding: 5px;
-    width: 100%;
+    width: 80%;
+    
     background-color: white;
     /* border: 2px solid lightgrey; */
 }
@@ -119,6 +123,7 @@ justify-content: space-between;
 .right-block{
     width: 15%;
     padding-top: 20px; 
+    
     margin-left: 20px;
     text-align: right;
     
