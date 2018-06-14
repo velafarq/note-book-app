@@ -8,16 +8,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header class="header">
+        <div class="header__left">
         <h1 class="header__title">Note<i class="fas fa-music"></i> Book</h1>
+        <p>A Musicians Journal</p>
+        </div>
         <nav class="header__nav">
             <ul class="header__nav__list">
-                <li class="home"><a href="#">Home</a></li>
-                <li>Logout</li>
+                <li class="home"><a href="#" onclick='getAndDisplayRecentPosts()'>HOME</a></li>
+                <li><a href="#">LOGOUT</a></li>
             </ul>
         </nav>
     </header>
@@ -29,58 +32,17 @@
          <div class="left-block__welcome-message">
             <h2>Welcome, Obi-Wan!</h2>
             <h3>Here are some of your recent posts...</h3>
-        </div>   
-        
-
-        <section class="left-block__post-summary">
-            <h3 class="left-block__post-summary__summary-heading">Notes on my senior recital</h3>
-            <p class="left-block__post-summary__info"><span>In: Performances</span><span>4th July 2009</span></p>
-            <p class="left-block__post-summary-snippet">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
-                laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-            <button class="left-block__post-summary__view-more">View More</button>
-        </section>
-
-        <section class="left-block__post-summary">
-                <h3 class="left-block__post-summary__summary-heading">Notes on my senior recital</h3>
-                <p class="left-block__post-summary__info"><span>In: Performances</span><span>4th July 2009</span></p>
-                <p class="left-block__post-summary-snippet">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
-                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                    <button class="left-block__post-summary__view-more">View More</button>
-            </section>
-<section class="left-block__post-summary">
-                <h3 class="left-block__post-summary__summary-heading">Notes on my senior recital</h3>
-                <p class="left-block__post-summary__info"><span>In: Performances</span><span>4th July 2009</span></p>
-                <p class="left-block__post-summary-snippet">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
-                    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                    <button class="left-block__post-summary__view-more">View More</button>
-            </section>
-
-            <section class="left-block__post-summary">
-                    <h3 class="left-block__post-summary__summary-heading">Notes on my senior recital</h3>
-                    <p class="left-block__post-summary__info"><span>In: Performances</span><span>4th July 2009</span></p>
-                    <p class="left-block__post-summary-snippet">"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
-                        eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
-                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                        <button class="left-block__post-summary__view-more">View More</button>
-                </section>
-            
-            </section>
+        </div>  
+     </section>
     
     <section class="right-block">
         <button class="right-block__add-entry">New Entry<i class="fas fa-plus"></i></button>
         <h3 class="right-block__title">Categories</h3>
         <div class="right-block__categories">
             <ul class="right-block__categories__list">
-                <li><a href="#">Practice Sessions</a></li>
+                <li><a href="#" onclick='getAndDisplayPracticeSessions()'>Practice Sessions</a></li>
                 <li><a href="#">Lessons</a></li>
-                <li><a href="#">Performances</a></li>
+                <li><a href="#" onclick='getAndDisplayPerformances()'>Performances</a></li>
                 <li><a href="#">Master Classes</a></li>
                 <li><a href="#">Other</a></li>
             </ul>
@@ -90,6 +52,7 @@
 
 
 </main>
+<script src="mock-recent-posts.js"></script>
 <script src="entry-view.js"></script>
 </body>
 </html>
