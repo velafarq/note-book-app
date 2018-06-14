@@ -22,8 +22,8 @@ const new_entry = $(`
             <option value="other">Other</option>
         </select>
         <input name="title" type="text" placeholder="Your Title">
-        <textarea name="body" id="body" cols="100" rows="40"></textarea>
-        <input type="submit">
+        <textarea name="body" id="body" cols="100" rows="40" class="left-block__new-entry__text-body"></textarea>
+        <button type="submit">SUBMIT</button>
     </form>
 
 
