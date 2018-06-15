@@ -49,7 +49,9 @@ function getRecentPosts(callbackFn) {
 
 
 function displayRecentPosts(data) {
+    $( ".left-block").empty();
     for (index in data.recentPosts) {
+       
        $('.left-block').append(
         ` <section class="left-block__post-summary">
         <h3 class="left-block__post-summary__summary-heading">${data.recentPosts[index].title}</h3>
