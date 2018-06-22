@@ -42,6 +42,34 @@ app.get('/', (req, res) => {
   res.sendFile(_dirname + './public/index.html');
 });
 
+const login = (req, res) => {
+  const user = req.body;
+  User.findOne({ email: user.email })
+    .then(response => {
+      console.log(response);
+      const userFound = response;
+      if (!userFound) {
+        return res.status(404).json({ message: 'User not found!' });
+      }
+
+      if (userFound.password === user.password) {
+        const token = jsonwebtoken.sign({ user: userFound }, JWT_SECRET);
+        return res.status(200).json({ token })
+      }
+        return res.status(401).json({ message: 'Password mismatch' });
+    })
+    .catch(error => {
+      res.status(401).json({ message: 'Password mismatch' });
+    });
+};
+
+const register = (req, res) => {
+  User.create(req.body, response => {
+    res.status(201).json(response);
+  });
+};
+
+
 const getPosts = (req, res) => {
   Post
   .find()
@@ -99,42 +127,29 @@ const post = (req, res) => {
     .catch(err => {
       console.error(err);
       res.status(500).json({error: 'Something went wrong'});
-    })
-
+    });
   }
 
-const login = (req, res) => {
-  const user = req.body;
-  User.findOne({ email: user.email })
-    .then(response => {
-      console.log(response);
-      const userFound = response;
-      if (!userFound) {
-        return res.status(404).json({ message: 'User not found!' });
-      }
-
-      if (userFound.password === user.password) {
-        const token = jsonwebtoken.sign({ user: userFound }, JWT_SECRET);
-        return res.status(200).json({ token })
-      }
-        return res.status(401).json({ message: 'Password mismatch' });
-    })
-    .catch(error => {
-      res.status(401).json({ message: 'Password mismatch' });
-    });
-};
-
-const register = (req, res) => {
-  User.create(req.body, response => {
-    res.status(201).json(response);
+const deletePost = (req, res) => {
+  Post
+  .findByIdAndRemove(req.params.id)
+  .then(() => {
+    res.status(204).json({message: 'Post successfully deleted'});
+  })
+  .catch(err => {
+    console.error(err);
+    res.status(500).json({ error: 'something went wrong'});
   });
-};
+}
+
 
 app.get('/auth/login', login);
 app.post('/auth/register', register);
+
 app.get('/posts', getPosts); 
 app.post('/posts', post); 
 app.put('/posts/:id', updatePost);
+app.delete('/posts/:id', deletePost);
 
 
 
