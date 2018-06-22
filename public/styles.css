@@ -2,7 +2,7 @@
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
-    /* color: #333; */
+    color: #333;
     
   
 }
@@ -18,7 +18,7 @@ a:hover, .fa-caret-right:hover {
 
 a {
     text-decoration: none;
-    color: white;
+    color:#333;
 }
 
 button {
@@ -39,6 +39,7 @@ background-color:#6AAFBA;
 padding-left: 20px;
 padding-right: 20px;
 color: white;
+box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 
 
 }
@@ -71,7 +72,7 @@ color: white;
    align-items: center;
    font-weight: 400;
    font-size: 13px;
-   color: white;
+  
    
 
    
@@ -86,7 +87,7 @@ color: white;
 }
 
 .main{
-    background-color: #30616B;
+    /* background-color: #30616B; */
     /* display: flex; */
     padding: 20px;
 
