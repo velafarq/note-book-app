@@ -141,8 +141,34 @@ describe('POST endpoint', function() {
     });
 });
 
+describe('PUT endpoint', function() {
+    it('should update a post based on its _id', function() {
 
+        const updatedPost = {
+            title: faker.lorem.sentence(),
+            category: "Master Class",
+        
+        };
 
+        return Post
+        .findOne()
+        .then(post => {
+            updatedPost._id = post._id;
+
+            return chai
+            .request(app)
+            .put(`/posts/${post._id}`)
+            .set('authorization', `bearer ${token}`)
+            .send(updatedPost);
+        })
+        .then(res => {
+            expect(res.status).to.equal(204);
+        });
+
+    });
 });
+});
+
+
 
 

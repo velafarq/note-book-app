@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
   res.sendFile(_dirname + './public/index.html');
 });
 
-app.get('/posts', (req, res) => {
+const getPosts = (req, res) => {
   Post
   .find()
   .then(posts => {
@@ -50,35 +50,58 @@ app.get('/posts', (req, res) => {
   })
   .catch(err => {
     console.error(err);
-    res.status(500).jjson({error: 'something went wrong'});
+    res.status(500).json({error: 'something went wrong'});
   });
-});
+};
 
-app.post('/posts', (req, res) => {
-const requiredFields = ['email', 'title', 'content', 'category'];
-for (let i = 0; i < requiredFields.length; i++) {
-  const field = requiredFields[i];
-  if (!(field in req.body)) {
-    const message = `Missing \`${field}\` in request body`;
-    console.error(message);
-    return res.status(400).send(message);
+const post = (req, res) => {
+  const requiredFields = ['email', 'title', 'content', 'category'];
+  for (let i = 0; i < requiredFields.length; i++) {
+    const field = requiredFields[i];
+    if (!(field in req.body)) {
+      const message = `Missing \`${field}\` in request body`;
+      console.error(message);
+      return res.status(400).send(message);
+    }
   }
-}
+  
+  Post
+  .create({
+    email: req.body.email,
+    title: req.body.title,
+    content: req.body.content,
+    category: req.body.category
+  })
+  .then(post => res.status(201).json(post))
+  .catch(err => {
+    console.error(err);
+    res.status(500).json({ error: 'Something went wrong' });
+  });
+  };
 
-Post
-.create({
-  email: req.body.email,
-  title: req.body.title,
-  content: req.body.content,
-  category: req.body.category
-})
-.then(post => res.status(201).json(post))
-.catch(err => {
-  console.error(err);
-  res.status(500).json({ error: 'Something went wrong' });
-});
-});
+  const updatePost = (req, res) => {
+    if (!(req.params.id && req.body._id && req.params.id === req.body._id)) {
+      res.status(400).json({
+        error: 'Request path id and request body id values must match'
+      });
+    }
 
+    const updated = {};
+    const updateableFields = ['title', 'content', 'category'];
+    updateableFields.forEach(field => {
+      if (field in req.body) {
+        updated[field] = req.body[field];
+      }
+    });
+    Post
+    .findByIdAndUpdate(req.params.id, {$set: updated}, {new: true})
+    .then(updatedPost => res.status(204).end())
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({error: 'Something went wrong'});
+    })
+
+  }
 
 const login = (req, res) => {
   const user = req.body;
@@ -109,6 +132,16 @@ const register = (req, res) => {
 
 app.get('/auth/login', login);
 app.post('/auth/register', register);
+app.get('/posts', getPosts); 
+app.post('/posts', post); 
+app.put('/posts/:id', updatePost);
+
+
+
+
+
+
+
 
 let server;
 
