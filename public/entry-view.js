@@ -29,11 +29,27 @@ const new_entry = $(`
 
 `)
 
-function goToEntry() {
-  $('.left-block').html(view_entry);
+function goToEntry(data) {
+  $(".left-block__welcome-message").empty();
+  $(".left-block").empty();
+
+  $('.left-block').append(`
+  <h2 class="left-block__entry-heading">${data.title}</h2>
+  <p class="left-block__entry-body">${data.content}</p>
+  <p class="left-block__entry-category">In ${data.category}</p>
+  `)
 }
 
 function goToNewEntry() {
   $('.left-block').html(new_entry);
 }
 
+function getPostById(id) {
+  fetch(`http://localhost:8080/posts/${id}`)
+  .then(res => res.json())
+  .then(data => {
+    console.log(data)
+    goToEntry(data)
+  })
+  .catch(err => console.log(err));
+}

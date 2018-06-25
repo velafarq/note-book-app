@@ -8,7 +8,9 @@ const expect = chai.expect;
 const { TEST_DATABASE_URL } = require('../config');
 describe('a login function', () => {
   before(function() {
+    
     return runServer();
+    
   });
 
   after(function() {

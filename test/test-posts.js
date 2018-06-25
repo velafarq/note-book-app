@@ -26,12 +26,14 @@ function tearDownDb() {
   function seedPostData() {
     console.info('seeding post data');
     const seedData = [];
+    const categories = ['Lessons', 'Practice Sessions', 'Performances', 'Master Classes', 'Other']
+    const randomCategory = categories[Math.floor(Math.random() * categories.length)];
     for (let i = 1; i <= 10; i++) {
       seedData.push({
         email: 'some@email.com',
         title: faker.lorem.sentence(),
-        body: faker.lorem.text(),
-        category: 'Lesson'
+        content: faker.lorem.text(),
+        category: randomCategory
       });
     }
     // this will return a promise
@@ -93,21 +95,7 @@ describe('posts API resource', function() {
     });
 
     describe('POST endpoint', function() {
-        //do I need to have this again or is it OK to reuse the value from the previous test?
-
-        // it('should return 200 and a token on successful login', () => {
-        //     return chai
-        //         .request(app)
-        //         .get('/auth/login')
-        //         .send({ email: 'some@email.com', password: 'some_password' })
-        //         .then(response => {
-        //             expect(response.status).to.equal(200);
-        //             expect(response.body).to.be.a('object');
-        //             expect(response.body).to.have.key('token');
-        //             token = response.body.token;
-        //         });
-        // });
-
+  
         it('should add a new post to the database', function () {
             const newPost = {
                 email: "some@email.com",

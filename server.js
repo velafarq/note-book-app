@@ -26,14 +26,13 @@ const JWT_SECRET = '12345';
 
 app.use(morgan('common'));
 app.use(jsonParser);
-app.use(express_jwt({ secret: JWT_SECRET }).unless({ path: ['/auth/login', '/auth/register'] }));
+// app.use(express_jwt({ secret: JWT_SECRET }).unless({ path: ['/auth/login', '/auth/register', '/'] }));
 
 app.use(function(err, req, res, next) {
   if (err.name === 'UnauthorizedError') {
     res.status(401).json({ message: `You don't have access to that resource!` });
   }
 });
-
 
 
 app.use(express.static('public'));
@@ -81,6 +80,19 @@ const getPosts = (req, res) => {
     res.status(500).json({error: 'something went wrong'});
   });
 };
+
+const getPostById = (req, res) => {
+ 
+  Post
+  .findById(req.params.id)
+  .then(post => {
+    res.json(post);
+  })
+  .catch(err => {
+    console.error(err);
+    res.status(500).json({error: 'something went wrong'});
+  });
+}
 
 const post = (req, res) => {
   const requiredFields = ['email', 'title', 'content', 'category'];
@@ -147,15 +159,10 @@ app.get('/auth/login', login);
 app.post('/auth/register', register);
 
 app.get('/posts', getPosts); 
+app.get('/posts/:id', getPostById);
 app.post('/posts', post); 
 app.put('/posts/:id', updatePost);
 app.delete('/posts/:id', deletePost);
-
-
-
-
-
-
 
 
 let server;
