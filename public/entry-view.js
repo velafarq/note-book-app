@@ -28,7 +28,6 @@ const new_entry = $(`
 `)
 document.getElementById("addPost").addEventListener('submit', addPost);
 
-
 function addPost(e) {
   e.preventDefault();
 

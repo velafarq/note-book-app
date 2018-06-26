@@ -168,16 +168,17 @@ input[type=text] {
 
 input[type=submit] {
     height: 45px;
-    width: 10%;
-    font-size: 15px;
+    width: 100%;
     text-align: center;
-
+    border:none;
+    font-size: 16px;
+    cursor: pointer;
+    background-color:#6AAFBA;
+    border-radius: 2px;
 }
-
-
-
-
-
+button:hover {
+    color: white;
+}
 
 
 
