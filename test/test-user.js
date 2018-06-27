@@ -5,7 +5,7 @@ const { runServer, app, closeServer } = require('../server');
 
 chai.use(chaiHttp);
 const expect = chai.expect;
-const { TEST_DATABASE_URL } = require('../config');
+const { TEST_DATABASE_URL } = require('../config/globals.config');
 describe('a login function', () => {
   before(function() {
     
@@ -20,7 +20,7 @@ describe('a login function', () => {
   it('should return 200 and a token on successful login', () => {
     return chai
       .request(app)
-      .get('/auth/login')
+      .post('/auth/login')
       .send({ email: 'some@email.com', password: 'some_password' })
       .then(response => {
         expect(response.status).to.equal(200);
@@ -32,7 +32,7 @@ describe('a login function', () => {
   it('should return 401 and an error message when incorrect password', () => {
     return chai
       .request(app)
-      .get('/auth/login')
+      .post('/auth/login')
       .send({ email: 'some@email.com', password: 'wrong_password' })
       .then(response => {
         expect(response.status).to.equal(401);
@@ -44,7 +44,7 @@ describe('a login function', () => {
     it('should return 404 and an error message when user not found', () => {
         return chai
             .request(app)
-            .get('/auth/login')
+            .post('/auth/login')
             .send({ email: 'no@user.com' })
             .then(response => {
                 expect(response.status).to.equal(404);
@@ -80,7 +80,7 @@ describe('a register function', () => {
       it('should return 200 and a token on successful login', () => {
           return chai
               .request(app)
-              .get('/auth/login')
+              .post('/auth/login')
               .send({ email: 'new@user.com', password: 'user_password' })
               .then(response => {
                   expect(response.status).to.equal(200);
@@ -93,7 +93,7 @@ describe('a register function', () => {
       it('should allow the the newly registered user in the db to login', () => {
         return chai
         .request(app)
-        .get('/auth/login')
+        .post('/auth/login')
         .set('authorization', `bearer ${token}`)
         .send({ email: 'new@user.com', password: 'user_password' })
         .then(response => {

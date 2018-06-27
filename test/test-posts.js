@@ -7,8 +7,8 @@ const mongoose = require('mongoose');
 
 const { runServer, app, closeServer } = require('../server');
 
-const Post = require('../post-model');
-const { TEST_DATABASE_URL } = require('../config');
+const { Post } = require('../api/post/post.model');
+// const { TEST_DATABASE_URL } = require('../config/globals.config');
 
 chai.use(chaiHttp);
 const expect = chai.expect;
@@ -30,7 +30,6 @@ function tearDownDb() {
     const randomCategory = categories[Math.floor(Math.random() * categories.length)];
     for (let i = 1; i <= 10; i++) {
       seedData.push({
-        email: 'some@email.com',
         title: faker.lorem.sentence(),
         content: faker.lorem.text(),
         category: randomCategory
@@ -59,23 +58,26 @@ describe('posts API resource', function() {
     });
 
     let token = '';
+
     describe('GET endpoint', function () {
 
-   
         it('should return 200 and a token on successful login', () => {
             return chai
                 .request(app)
-                .get('/auth/login')
+                .post('/auth/login')
                 .send({ email: 'some@email.com', password: 'some_password' })
                 .then(response => {
                     expect(response.status).to.equal(200);
                     expect(response.body).to.be.a('object');
                     expect(response.body).to.have.key('token');
                     token = response.body.token;
+                    
+                    
                 });
         });
 
         it('should return all posts', function() {
+            
             let res;
             return chai.
             request(app)
@@ -85,7 +87,7 @@ describe('posts API resource', function() {
                 res = response;
                 expect(res.status).to.equal(200);
                 expect(res.body).to.have.lengthOf.at.least(1);  
-                return Post.count({});
+                return Post.count({author: user._id});
             })
             .then(count => {
                 expect(res.body).to.have.lengthOf(count);
@@ -98,7 +100,6 @@ describe('posts API resource', function() {
   
         it('should add a new post to the database', function () {
             const newPost = {
-                email: "some@email.com",
                 title: faker.lorem.sentence(),
                 content: faker.lorem.text(),
                 category: "Performance"
@@ -113,10 +114,9 @@ describe('posts API resource', function() {
             expect(response.status).to.equal(201);
             expect(response).to.be.json;
             expect(response.body).to.be.a('object');
-            expect(response.body).to.include.keys("email", "title", "content", "category", "_id");
-            expect(response.body.email).to.equal(newPost.email),
-            expect(response.body.category).to.equal(newPost.category)
-            expect(response.body.content).to.equal(newPost.content),
+            expect(response.body).to.include.keys("title", "content", "category", "_id", "author");
+            expect(response.body.category).to.equal(newPost.category);
+            expect(response.body.content).to.equal(newPost.content);
             expect(response.body._id).to.not.be.null;
             return Post.findById(response.body._id);
         })   
@@ -124,7 +124,6 @@ describe('posts API resource', function() {
             expect(post.category).to.equal(newPost.category);
             expect(post.title).to.equal(newPost.title);
             expect(post.content).to.equal(newPost.content);
-            expect(post.email).to.equal(newPost.email);
             });
         });
     });
@@ -139,7 +138,7 @@ describe('posts API resource', function() {
             };
 
             return Post
-            .findOne()
+            .findOne({author: user._id})
             .then(post => {
                 updatedPost._id = post._id;
 

@@ -1,11 +1,9 @@
 'use strict';
 
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
-
 
 const postSchema = mongoose.Schema({
-    email: String,
+    author: mongoose.Schema.ObjectId,
     title: String, 
     content: String, 
     category: String
@@ -14,4 +12,4 @@ const postSchema = mongoose.Schema({
 
 const Post = mongoose.model('Post', postSchema);
 
-module.exports = Post;
+module.exports = { Post, postSchema };

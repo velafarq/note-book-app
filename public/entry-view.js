@@ -1,6 +1,3 @@
-$('.left-block__post-summary__view-more').click(goToEntry);
-$('.right-block__add-entry').click(goToNewEntry);
-$('.home').click();
 
 const view_entry = $(`
 <h2 class="left-block__entry-heading">Notes on my Senior Recital</h2>
@@ -26,30 +23,42 @@ const new_entry = $(`
         <input type="submit" value="SUBMIT">
     </form>
 `)
-document.getElementById("addPost").addEventListener('submit', addPost);
 
-function addPost(e) {
+
+const addPost= e => {
   e.preventDefault();
 
-  let title = document.getElementById('title').value;
-  let categories = document.getElementById('categories');
-  let category = categories.options[categories.selectedIndex].value;
-  let body = document.getElementById('body').value;
+  const title = $('#title').val();
+  const category = $('#categories').val();
+  const body = $('#body').val();
 
-  fetch("http://localhost:8080/posts", {
+  const data = new FormData();
+  data.append('json', JSON.stringify({ title: title, category: category, body: body }));
+
+  fetch('http://localhost:8080/posts', {
     method: 'POST',
-    headers: {
-      'Accept': 'application/json, text/plain, */*',
-      'Content-type': 'application/json'
-    },
-    body: JSON.stringify({title:title, category: category, body: body})
+    body: data,
   })
-  .then(res => res.json())
-  .then(data => console.log(data))
-  .catch(error => console.log(error));
-}
+    .then(res => res.json())
+    .then(data => {
+      $(".left-block").empty();
 
-function goToEntry(data) {
+  $('.left-block').append(`
+  <p>Your post was submitted successfuly!</p>
+  `);
+      
+    })
+    .catch(error => {
+      $(".left-block").empty();
+
+    $('.left-block').append(`
+    <p>Oops, your post was not submmitted!</p>
+   `);
+      console.log(error);
+    });
+};
+
+const goToEntry = data => {
   $(".left-block__welcome-message").empty();
   $(".left-block").empty();
 
@@ -57,14 +66,15 @@ function goToEntry(data) {
   <h2 class="left-block__entry-heading">${data.title}</h2>
   <p class="left-block__entry-body">${data.content}</p>
   <p class="left-block__entry-category">In ${data.category}</p>
-  `)
-}
+  `);
+};
 
-function goToNewEntry() {
+const goToNewEntry = () => {
   $('.left-block').html(new_entry);
-}
+  $('#addPost').submit(addPost);
+};
 
-function getPostById(id) {
+const getPostById = id => {
   fetch(`http://localhost:8080/posts/${id}`)
   .then(res => res.json())
   .then(data => {
@@ -72,5 +82,7 @@ function getPostById(id) {
     goToEntry(data)
   })
   .catch(err => console.log(err));
-}
+};
 
+$('.left-block__post-summary__view-more').click(goToEntry);
+$('.right-block__add-entry').click(goToNewEntry);

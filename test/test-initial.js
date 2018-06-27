@@ -19,7 +19,7 @@ describe('My root url is working', function() {
     it('should return 200 and a token on successful login', () => {
         return chai
             .request(app)
-            .get('/auth/login')
+            .post('/auth/login')
             .send({ email: 'some@email.com', password: 'some_password' })
             .then(response => {
                 expect(response.status).to.equal(200);
