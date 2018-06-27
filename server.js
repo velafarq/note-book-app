@@ -1,12 +1,62 @@
+'use strict';
+
 const express = require('express');
+
+const mongoose = require('mongoose');
+
+const { DATABASE_URL, PORT } = require('./config/globals.config');
+
 const app = express();
-app.use(express.static('public'));
 
+let server;
 
-app.get('/', function(req, res) {
-    res.sendFile(_dirname + './public/index.html')
+require('./config/app.config')(app);
+require('./config/errors.config')(app);
+require('./config/routers.config')(app);
+
+app.get('/', (req, res) => {
+  res.sendFile(_dirname + './public/index.html');
 });
 
-app.listen(process.env.PORT || 8080);
+function runServer() {
+  return new Promise((resolve, reject) => {
+    mongoose.connect(
+      DATABASE_URL,
+      err => {
+        if (err) {
+          return reject(err);
+        }
 
-module.exports = { app };
+        server = app
+          .listen(PORT, () => {
+            console.log(`Your app is listening on port ${PORT}`);
+            resolve();
+          })
+          .on('error', err => {
+            mongoose.disconnect();
+            reject(err);
+          });
+      }
+    );
+  });
+}
+
+function closeServer() {
+  return mongoose.disconnect().then(() => {
+    return new Promise((resolve, reject) => {
+      console.log('Closing server');
+      server.close(err => {
+        if (err) {
+          return reject(err);
+        }
+        resolve();
+      });
+    });
+  });
+}
+
+if (require.main === module) {
+  runServer(DATABASE_URL).catch(err => console.error(err));
+}
+
+module.exports = { runServer, app, closeServer };

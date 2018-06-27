@@ -4,9 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Note Book</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <p>Hello World</p>
+<body class="body">
+    <header class="header">
+        <div class="header__left">
+        <h1 class="header__title">Note <i class="fas fa-music"></i> Book</h1>
+        <p>A Musician's Journal</p>
+        </div>
+        <nav class="header__nav">
+            <ul class="header__nav__list">
+                <li class="home"><a href="#" id="home">HOME</a></li>
+                <li><a href="#" id="login">LOGOUT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main">
+
+        
+
+         <div class="left-block__welcome-message">
+            <h2>Welcome!</h2>
+            <h3>Here are some of your recent posts...</h3>
+        </div>  
+        <section class="main__blocks">
+            
+        <section class="left-block"></section>
+     
+    
+    <section class="right-block">
+        <button class="right-block__add-entry">Start New Entry <i class="fas fa-plus"></i></button>
+        <h3 class="right-block__title">CATEGORIES</h3>
+        <div class="right-block__categories">
+            <ul class="right-block__categories__list">
+                <li><a href="#" id='practice-sessions'>Practice Sessions</a></li>
+                <li><a href="#" id='lessons'>Lessons</a></li>
+                <li><a href="#" id='performances'>Performances</a></li>
+                <li><a href="#" id='master-classes'>Master Classes</a></li>
+                <li><a href="#" id='other'>Other</a></li>
+            </ul>
+        </div>
+    </section>
+</section>
+
+
+
+</main>
+<script src="posts-view.js"></script>
+<script src="login.js"></script>
+<script src="entry-view.js"></script>
 </body>
 </html>
+
