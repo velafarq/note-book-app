@@ -30,6 +30,7 @@ function tearDownDb() {
     const randomCategory = categories[Math.floor(Math.random() * categories.length)];
     for (let i = 1; i <= 10; i++) {
       seedData.push({
+        author: "5b3400a1d8b51f337f754498",
         title: faker.lorem.sentence(),
         content: faker.lorem.text(),
         category: randomCategory
@@ -87,7 +88,7 @@ describe('posts API resource', function() {
                 res = response;
                 expect(res.status).to.equal(200);
                 expect(res.body).to.have.lengthOf.at.least(1);  
-                return Post.count({author: user._id});
+                return Post.count({author: "5b3400a1d8b51f337f754498"});
             })
             .then(count => {
                 expect(res.body).to.have.lengthOf(count);
@@ -111,15 +112,12 @@ describe('posts API resource', function() {
         .set('authorization', `bearer ${token}`)
         .send(newPost)
         .then(response => {
+            console.log(response.body);
             expect(response.status).to.equal(201);
-            expect(response).to.be.json;
-            expect(response.body).to.be.a('object');
-            expect(response.body).to.include.keys("title", "content", "category", "_id", "author");
-            expect(response.body.category).to.equal(newPost.category);
-            expect(response.body.content).to.equal(newPost.content);
-            expect(response.body._id).to.not.be.null;
-            return Post.findById(response.body._id);
-        })   
+            expect(response.body).to.include.key('_id');
+
+            return Post.findOne({_id: response.body._id, author: "5b3400a1d8b51f337f754498"});
+        })
         .then(post => {
             expect(post.category).to.equal(newPost.category);
             expect(post.title).to.equal(newPost.title);
@@ -138,7 +136,7 @@ describe('posts API resource', function() {
             };
 
             return Post
-            .findOne({author: user._id})
+            .findOne({author: "5b3400a1d8b51f337f754498"})
             .then(post => {
                 updatedPost._id = post._id;
 
@@ -160,7 +158,7 @@ describe('posts API resource', function() {
             let post;
 
             return Post
-            .findOne()
+            .findOne({author: "5b3400a1d8b51f337f754498"})
             .then(_post => {
                 post = _post;
                 return chai

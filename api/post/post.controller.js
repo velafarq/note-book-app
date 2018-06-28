@@ -2,10 +2,10 @@ const { Post } = require('./post.model');
 
 const getPosts = (req, res) => {
   const { user } = req.user;
+  console.log(user._id);
     Post
-    .find( { author: user._id })
+    .find({author: user._id})
     .then(posts => {
-      console.log(user);
       res.json(posts);
     })
     .catch(err => {
@@ -46,7 +46,7 @@ const createPost = (req, res) => {
       content: req.body.content,
       category: req.body.category
     })
-    .then(post => res.sendStatus(201))
+    .then(post => res.status(201).json({_id: post._id}))
     .catch(err => {
       console.error(err);
       res.status(500).json({ error: 'Something went wrong' });

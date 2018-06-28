@@ -4,6 +4,8 @@ const JWT_SECRET = '12345';
 
 const login = (req, res) => {
     const user  = req.body;
+    // console.log(user);
+    // console.log('test');
     User.findOne({ email: user.email })
       .then(response => {
         const userFound = response;

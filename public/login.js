@@ -43,14 +43,14 @@ const register_view = `<header class="header__login">
 const goToLoginPage = () => {
     $('.body').empty();
     $('.body').append(login_view);
+    $("#register").click(goToRegisterPage);
 }
 
 const goToRegisterPage = () => {
     $('.body').empty();
     $('.body').append(register_view);
+    $("#login").click(goToLoginPage);
 }
-
-
 
 $("#login").click(goToLoginPage);
 $("#register").click(goToRegisterPage);

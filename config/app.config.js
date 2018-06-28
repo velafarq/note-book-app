@@ -1,8 +1,10 @@
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+
 const express_jwt = require('express-jwt');
 const jsonParser = require('body-parser').json();
+
 
 const JWT_SECRET = '12345';
 
