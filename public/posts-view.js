@@ -42,6 +42,12 @@ function getCategory(category) {
     .catch(e => console.log(e));
 }
 
+
+$( "#categories" ).click(function() {
+    $("#categories-dropdown").toggleClass( "hidden" );
+  });
+
+
 const url = 'http://localhost:8080/posts';
 
     getData(url, displayRecentPosts);

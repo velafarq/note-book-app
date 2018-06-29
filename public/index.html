@@ -12,43 +12,44 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="body">
-    <header class="header">
-        <div class="header__left">
-        <h1 class="header__title">Note <i class="fas fa-music"></i> Book</h1>
-        <p>A Musician's Journal</p>
-        </div>
-        <nav class="header__nav">
-            <ul class="header__nav__list">
-                <li class="home"><a href="#" id="home">HOME</a></li>
-                <li><a href="#" id="login">LOGOUT</a></li>
-            </ul>
-        </nav>
-    </header>
+        <header class="header">
+            <section class="header__container">
+                <div class="header__container__title">
+                    <h1 class="header__title">Note <i class="fas fa-music"></i> Book</h1>
+                    <p class="header_subtitle">A Musician's Journal</p> 
+                </div>
+                <nav class="nav">
+                        <ul class="nav__list">
+                            <li><a href="#" class="nav__list__add-entry">NEW ENTRY</a></li>
+                            <li><a href="#" id="home">HOME</a></li>
+                            <li class="nav__list__categories">
+                                <a href="#" class="nav__list__categories__title" id="categories">CATEGORIES <i class="fas fa-sort-down"></i></a>
+                                <div class="nav__list__categories__submenu hidden" id="categories-dropdown">
+                                    <ul>
+                                        <li><a href="#" id='practice-sessions'>Practice Sessions</a></li>
+                                        <li><a href="#" id='lessons'>Lessons</a></li>
+                                        <li><a href="#" id='performances'>Performances</a></li>
+                                        <li><a href="#" id='master-classes'>Master Classes</a></li>
+                                        <li><a href="#" id='other'>Other</a></li>
+                                    </ul>
+                                </div>
+                        </li>
+                            <li><a href="#" id="login">LOGOUT</a></li>
+                        </ul>
+                    </nav>
+                
+            </section>
+            </header>
 
     <main class="main">
-
-        
-
-         <div class="left-block__welcome-message">
-            <h2>Welcome!</h2>
-        </div>  
+    
         <section class="main__blocks">
             
         <section class="left-block"></section>
      
     
     <section class="right-block">
-        <button class="right-block__add-entry">Start New Entry <i class="fas fa-plus"></i></button>
-        <h3 class="right-block__title">CATEGORIES</h3>
-        <div class="right-block__categories">
-            <ul class="right-block__categories__list">
-                <li><a href="#" id='practice-sessions'>Practice Sessions</a></li>
-                <li><a href="#" id='lessons'>Lessons</a></li>
-                <li><a href="#" id='performances'>Performances</a></li>
-                <li><a href="#" id='master-classes'>Master Classes</a></li>
-                <li><a href="#" id='other'>Other</a></li>
-            </ul>
-        </div>
+        
     </section>
 </section>
 

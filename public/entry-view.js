@@ -59,7 +59,7 @@ const addPost= e => {
 };
 
 const goToEntry = data => {
-  $(".left-block__welcome-message").empty();
+  $('.right-block').empty();
   $(".left-block").empty();
 
   $('.left-block').append(`
@@ -70,6 +70,7 @@ const goToEntry = data => {
 };
 
 const goToNewEntry = () => {
+  $('.right-block').empty();
   $('.left-block').html(new_entry);
   $('#addPost').submit(addPost);
 };
@@ -85,4 +86,4 @@ const getPostById = id => {
 };
 
 $('.left-block__post-summary__view-more').click(goToEntry);
-$('.right-block__add-entry').click(goToNewEntry);
+$('.nav__list__add-entry').click(goToNewEntry);

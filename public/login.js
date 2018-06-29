@@ -1,5 +1,5 @@
-const login_view = `<header class="header__login">
-        <h1 class="header__login__title">Note <i class="fas fa-music"></i> Book</h1>
+const login_view = `<header class="header">
+        <h1 class="header__title">Note <i class="fas fa-music"></i> Book</h1>
         <p class="header_subtitle">A Musician's Journal</p> 
     </header>
 <main class="main__login"> 
@@ -18,8 +18,8 @@ const login_view = `<header class="header__login">
     </section>
 </main>`
 
-const register_view = `<header class="header__login">
-<h1 class="header__login__title">Note <i class="fas fa-music"></i> Book</h1>
+const register_view = `<header class="header">
+<h1 class="header__title">Note <i class="fas fa-music"></i> Book</h1>
 <p class="header_subtitle">A Musician's Journal</p> 
 </header>
 <main class="main__login"> 
