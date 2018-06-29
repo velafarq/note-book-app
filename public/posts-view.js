@@ -43,9 +43,7 @@ function getCategory(category) {
 }
 
 
-$( "#categories" ).click(function() {
-    $("#categories-dropdown").toggleClass( "hidden" );
-  });
+
 
 
 const url = 'http://localhost:8080/posts';
@@ -73,3 +71,17 @@ const url = 'http://localhost:8080/posts';
         getData(url, displayRecentPosts);
     })
   
+    // nav bar drop down menu //
+
+    $( "#categories" ).click(function() {
+        $("#categories-dropdown").toggleClass( "show" );
+      });
+    
+      window.onclick = function(e) {
+        if (!e.target.matches('#categories')) {
+          var myDropdown = document.getElementById("categories-dropdown");
+            if ($('#categories-dropdown').hasClass('show')) {
+              $('#categories-dropdown').removeClass('show');
+            }
+        }
+      }

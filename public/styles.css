@@ -158,7 +158,7 @@ padding: 5px;
     margin-left: 4px;
 }
 .nav__list__categories__submenu {
-    display: flex;
+    display: none;
     position: relative;
   
 }
@@ -191,9 +191,9 @@ padding: 5px;
 
 }
 
-.hidden {
-    opacity: 0;
-    display: none;
+.show {
+  
+    display: flex;
 }
 
 
@@ -302,26 +302,7 @@ button:hover {
 
 
 
-/* Right block */
-.right-block{
-    width: 100%;
-    margin-left: 20px;
-    text-align: right;
-    display: none;
-       
-}
-
-
-@media only screen and (min-width: 1345px) {
-    .right-block {
-        width: 15%;
-        display: block;
-    }
-   
-}
-
-
-
+/* login/register page */
 button__login {
     border:none;
     font-size: 16px;
@@ -381,11 +362,6 @@ button:hover {
     
 }
  
-
-
-
-
-
  @media only screen and (min-width: 520px){
    .login-box {
     width: 500px;
@@ -394,21 +370,3 @@ button:hover {
 
 }
 
-/* 
-
-        
-#0F283E      #892016    
-#1C425C 
-#30616B#892016
-#265A76
-#6AAFBA
-
-#954F37
-#91452C
-#914B33
-#9D8873
-
-#70203F
-#C57155
-#892016
-#561426 */
