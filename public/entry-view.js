@@ -10,6 +10,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
 const new_entry = $(`
 <form action="" class="left-block__new-entry" id="addPost">
+      
         <p class="left-block__new-entry__category">Choose a category:</p>
         <select name="categories" id="categories" class="left-block__new-entry__category-list">
             <option value="Practice Sessions">Practice Session</option>
@@ -19,7 +20,7 @@ const new_entry = $(`
             <option value="Other">Other</option>
         </select>
         <input name="title" type="text" id="title" placeholder="Your Title">
-        <textarea name="body" id="body" cols="100" rows="40" class="left-block__new-entry__text-body"></textarea>
+        <textarea name="body" id="body" class="left-block__new-entry__text-body"></textarea>
         <input type="submit" value="SUBMIT">
     </form>
 `)
