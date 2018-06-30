@@ -10,6 +10,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
 
 const new_entry = $(`
 <form action="" class="left-block__new-entry" id="addPost">
+      
         <p class="left-block__new-entry__category">Choose a category:</p>
         <select name="categories" id="categories" class="left-block__new-entry__category-list">
             <option value="Practice Sessions">Practice Session</option>
@@ -19,7 +20,7 @@ const new_entry = $(`
             <option value="Other">Other</option>
         </select>
         <input name="title" type="text" id="title" placeholder="Your Title">
-        <textarea name="body" id="body" cols="100" rows="40" class="left-block__new-entry__text-body"></textarea>
+        <textarea name="body" id="body" class="left-block__new-entry__text-body"></textarea>
         <input type="submit" value="SUBMIT">
     </form>
 `)
@@ -59,7 +60,7 @@ const addPost= e => {
 };
 
 const goToEntry = data => {
-  $(".left-block__welcome-message").empty();
+  $('.right-block').empty();
   $(".left-block").empty();
 
   $('.left-block').append(`
@@ -70,6 +71,7 @@ const goToEntry = data => {
 };
 
 const goToNewEntry = () => {
+  $('.right-block').empty();
   $('.left-block').html(new_entry);
   $('#addPost').submit(addPost);
 };
@@ -85,4 +87,4 @@ const getPostById = id => {
 };
 
 $('.left-block__post-summary__view-more').click(goToEntry);
-$('.right-block__add-entry').click(goToNewEntry);
+$('.nav__list__add-entry').click(goToNewEntry);

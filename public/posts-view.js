@@ -42,6 +42,10 @@ function getCategory(category) {
     .catch(e => console.log(e));
 }
 
+
+
+
+
 const url = 'http://localhost:8080/posts';
 
     getData(url, displayRecentPosts);
@@ -67,3 +71,17 @@ const url = 'http://localhost:8080/posts';
         getData(url, displayRecentPosts);
     })
   
+    // nav bar drop down menu //
+
+    $( "#categories" ).click(function() {
+        $("#categories-dropdown").toggleClass( "show" );
+      });
+    
+      window.onclick = function(e) {
+        if (!e.target.matches('#categories')) {
+          var myDropdown = document.getElementById("categories-dropdown");
+            if ($('#categories-dropdown').hasClass('show')) {
+              $('#categories-dropdown').removeClass('show');
+            }
+        }
+      }
