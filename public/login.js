@@ -52,8 +52,8 @@ const register_view = `<header class="header">
 const registerNewUser= e => {
     e.preventDefault();
   
-    const email = $('#user-email').val();
-    const password = $('#user-password').val();
+    const email = $("#user-email").val();
+    const password = $("#user-password").val();
    
   
     const data = new FormData();
@@ -64,10 +64,14 @@ const registerNewUser= e => {
       body: data,
     })
       .then(res => res.json())
-      .then(data => {
+      .then(user => {
+        
+        window.localStorage.setItem('token', data.token);
+        const myToken = window.localStorage.getItem('token');
+         console.log(myToken);
         $(".left-block").empty();
   
-        getData('http://localhost:8080/posts', displayRecentPosts);
+        getData('http://localhost:8080/posts', myToken, displayRecentPosts);
 
       })
       .catch(error => {
@@ -96,9 +100,11 @@ const registerNewUser= e => {
     })
       .then(res => res.json())
       .then(data => {
-        $(".left-block").empty();
-  
-        getData('http://localhost:8080/posts', displayRecentPosts);
+        window.localStorage.setItem('token', data.token);
+         const myToken = window.localStorage.getItem('token');
+    
+   
+        getData('http://localhost:8080/posts', myToken, displayRecentPosts);
 
       })
       .catch(error => {

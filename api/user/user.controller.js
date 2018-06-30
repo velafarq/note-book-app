@@ -25,9 +25,24 @@ const login = (req, res) => {
   };
   
   const register = (req, res) => {
-    User.create(req.body, response => {
-      res.status(201).json(response);
-    });
-  };
+    const newUser = req.body;
+    // console.log('test', newUser);
+    // User.findOne({email: newUser.email})
+    // .then(response => {
+    
+    //   const userFound = response;
+    //   if (userFound.email === null) {
+        User.create({email: newUser.email, password: newUser.password})
+        .then(response => {
+          const token = jsonwebtoken.sign({ user: newUser }, JWT_SECRET);
+          return res.status(200).json({ token })
+        });
+      };
+      // if (userFound.email === newUser.email) {
+      //   return res.status(404).json({message: 'This email is already taken!'});
+      // }
+    // });
+    // };  
+
 
   module.exports = { login, register };

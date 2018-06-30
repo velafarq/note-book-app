@@ -1,5 +1,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
+const faker = require('faker');
 
 const { runServer, app, closeServer } = require('../server');
 
@@ -62,15 +63,19 @@ describe('a register function', () => {
       after(function() {
           return closeServer();
       });
-      
+      const fakeEmail = faker.internet.email();
+      const fakePassword = faker.internet.password();
+
       it('should return 201 on successful registering', () => {
           return chai
           .request(app)
           .post('/auth/register')
-          .send({ email: 'new@user.com', password: 'user_password' })
+          .send({ email: fakeEmail, password: fakePassword })
           .then(response => {
-              console.log('HELLOOO', response.body);
-              expect(response.status).to.equal(201);
+         
+              expect(response.status).to.equal(200);
+              expect(response.body).to.be.a('object');
+             expect(response.body).to.have.key('token');
 
           });
       });
@@ -81,7 +86,7 @@ describe('a register function', () => {
           return chai
               .request(app)
               .post('/auth/login')
-              .send({ email: 'new@user.com', password: 'user_password' })
+              .send({ email: fakeEmail, password: fakePassword })
               .then(response => {
                   expect(response.status).to.equal(200);
                   expect(response.body).to.be.a('object');
@@ -95,7 +100,7 @@ describe('a register function', () => {
         .request(app)
         .post('/auth/login')
         .set('authorization', `bearer ${token}`)
-        .send({ email: 'new@user.com', password: 'user_password' })
+        .send({ email: fakeEmail, password: fakePassword })
         .then(response => {
             expect(response.status).to.equal(200);
             expect(response.body).to.be.a('object');
