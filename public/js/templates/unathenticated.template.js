@@ -44,7 +44,7 @@ const register_template = $(`<header class="header">
         <button type="submit" class="button__login">Register</button>     
 </form>
 <footer role="contentinfo" class="footer">
-        <p>Already have an account? <a id="login">Login</a></p>
+        <p>Or <a id="login">Login</a></p>
       </footer>
 </section>
 </main>`);

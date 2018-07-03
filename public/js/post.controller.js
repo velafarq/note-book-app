@@ -1,9 +1,9 @@
 const addPost = e => {
     e.preventDefault();
   
-    const title = $addPostForm.find('#title').val();
-    const category = $addPostForm.find('#categories').val();
-    const content = $addPostForm.find('#body').val();
+    const title = $('#addPost').find('#title').val();
+    const category = $('#addPost').find('#categories').val();
+    const content = $('#addPost').find('#body').val();
     const data = JSON.stringify({
       title,
       category,
@@ -20,22 +20,39 @@ const addPost = e => {
     })
       .then(res => res.json())
       .then(data => {
-        $mainBlock.empty();
-        $mainBlock.append(`
+        $(".main__block").empty();
+        $(".main__block").append(`
         <p>Your post was submitted successfuly!</p> 
         `);
       })
       .catch(error => {
-        $mainBlock.empty();
-        $mainBlock.append(`
+        $(".main__block").empty();
+        $(".main__block").append(`
       <p>Oops, your post was not submmitted!</p>
      `);
         console.log(error);
       });
   };
+
+  const goToEntry = data => {
+    $(".main__block").empty();
+      $(".main__block").append(`
+      <h2 class="main__block__entry-heading">${data.title}</h2>
+      <p class="main__block__entry-body">${data.content}</p>
+      <p class="main__block__entry-category">In ${data.category}</p>
+      <button id="edit" onclick="editPost(${data})">Edit</button>
+      <button id="delete" onclick="deletePost('${data._id}')">Delete</button>
+    `);
+  };
   
   const getPostById = id => {
-    fetch(`${BASE_URL}/posts/${id}`)
+    fetch(`${BASE_URL}/posts/${id}`, {
+      method: 'GET',
+      headers: new Headers({
+        Authorization: `bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json',
+      }),
+    })
       .then(res => res.json())
       .then(data => {
         console.log(data);
@@ -83,7 +100,7 @@ const addPost = e => {
      content,
    })
 
-    return fetch(`${BASE_URL}/posts/${post._id}`, {
+   fetch(`${BASE_URL}/posts/${post._id}`, {
       method: 'PUT',
       body: data,
       headers: {
@@ -93,14 +110,14 @@ const addPost = e => {
     })
       .then(res => res.json())
       .then(() => {
-        $mainBlock.empty();
-      $mainBlock.append(`
+        $(".main__block").empty();
+        $(".main__block").append(`
       <p>Your post is updated!</p> 
       `);
     })
     .catch(error => {
-      $mainBlock.empty();
-      $mainBlock.append(`
+      $(".main__block").empty();
+      $(".main__block").append(`
     <p>Oops, your post was not submmitted!</p>
    `);
       console.log(error);
@@ -117,27 +134,29 @@ const deletePost = id => {
     }
   })
   .then(res => res.json())
-  .then(data => {
-    $mainBlock.empty();
-      $mainBlock.append(`
-    <p>Your post has been deleted.</p>
-   `)
-   .catch(error => {
-    $mainBlock.empty();
-    $mainBlock.append(`
-  <p>There was an error deleting your post. Please try again.</p>`);
-   })
-  })
+  .then(data => console.log(data))
+  .catch(error => console.log(error));
+  // .then(data => {
+  //   $(".main__block").empty();
+  //   $(".main__block").append(`
+  //   <p>Your post has been deleted.</p>
+  //  `)
+  //  .catch(error => {
+  //   $(".main__block").empty();
+  //   $(".main__block").append(`
+  // <p>There was an error deleting your post. Please try again.</p>`);
+  //  })
+  // })
 };
 
-  $categories.click(function() {
-    $categoryDropDown.toggleClass('show');
+$("#nav-categories").click(function() {
+  $("#categories-dropdown").toggleClass('show');
   });
   
   // window.onclick = function(e) {
   //   if (!e.target.matches($categories)) {
-  //     if ($($categoryDropDown).hasClass('show')) {
-  //       $($categoryDropDown).removeClass('show');
+  //     if ($("#categories-dropdown").hasClass('show')) {
+  //       ($("#categories-dropdown")).removeClass('show');
   //     }
   //   }
   // };

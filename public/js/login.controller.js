@@ -1,8 +1,8 @@
 const login = e => {
     e.preventDefault();
   
-    const email = $('#user-email').val();
-    const password = $('#user-password').val();
+    const email = $("#login-user").find('#user-email').val();
+    const password = $("#login-user").find('#user-password').val();
     const data = new FormData();
   
     data.append('json', JSON.stringify({ email: email, password: password }));
@@ -13,14 +13,14 @@ const login = e => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+    
         localStorage.setItem('token', data.token);
-        $mainBlock.empty();
+        $(".main__block").empty();
         getData(displayRecentPosts);
       })
       .catch(error => {
-        $mainBlock.empty();
-        $mainBlock.append(`
+        $(".main__block").empty();
+        $(".main__block").append(`
           <p>Oops, your login was not successful!</p>
          `);
       });
@@ -41,13 +41,13 @@ const login = e => {
     })
       .then(res => res.json())
       .then(data => {
-        $mainBlock.empty();
-        $mainBlock.html(`Welcome! Click <a href="#" onlick="goToNewEntry()">here</a>to begin a new post.`)
+        $(".main__block").empty();
+        $(".main__block").html(`Welcome! Click <a href="#" onlick="goToNewEntry()">here</a>to begin a new post.`)
         // getData(`${BASE_URL}/posts`, displayRecentPosts);
       })
       .catch(error => {
-        $mainBlock.empty();
-        $mainBlock.append(`
+        $(".main__block").empty();
+        $(".main__block").append(`
           <p>Oops, your register was not successful!</p>
        `);
       });
