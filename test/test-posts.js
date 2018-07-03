@@ -30,7 +30,7 @@ function tearDownDb() {
     const randomCategory = categories[Math.floor(Math.random() * categories.length)];
     for (let i = 1; i <= 10; i++) {
       seedData.push({
-        author: "5b37d6df9b4eb968b0303bc5",
+        author: "5b3400a1d8b51f337f754498",
         title: faker.lorem.sentence(),
         content: faker.lorem.text(),
         category: randomCategory
@@ -88,7 +88,7 @@ describe('posts API resource', function() {
                 res = response;
                 expect(res.status).to.equal(200);
                 expect(res.body).to.have.lengthOf.at.least(1);  
-                return Post.count({author: "5b37d6df9b4eb968b0303bc5"});
+                return Post.count({author: "5b3400a1d8b51f337f754498"});
             })
             .then(count => {
                 expect(res.body).to.have.lengthOf(count);
@@ -116,7 +116,7 @@ describe('posts API resource', function() {
             expect(response.status).to.equal(201);
             expect(response.body).to.include.key('_id');
 
-            return Post.findOne({_id: response.body._id, author: "5b37d6df9b4eb968b0303bc5"});
+            return Post.findOne({_id: response.body._id, author: "5b3400a1d8b51f337f754498"});
         })
         .then(post => {
             expect(post.category).to.equal(newPost.category);
@@ -136,7 +136,7 @@ describe('posts API resource', function() {
             };
 
             return Post
-            .findOne({author: "5b37d6df9b4eb968b0303bc5"})
+            .findOne({author: "5b3400a1d8b51f337f754498"})
             .then(post => {
                 updatedPost._id = post._id;
 
@@ -158,7 +158,7 @@ describe('posts API resource', function() {
             let post;
 
             return Post
-            .findOne({author: "5b37d6df9b4eb968b0303bc5"})
+            .findOne({author: "5b3400a1d8b51f337f754498"})
             .then(_post => {
                 post = _post;
                 return chai
