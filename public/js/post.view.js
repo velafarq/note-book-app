@@ -38,16 +38,7 @@ const categoryFilter = (data, specificCategory) => {
 }
 
 
-// const goToEntry = data => {
-//   $(".main__block").empty();
-//     $(".main__block").append(`
-//     <h2 class="main__block__entry-heading">${data.title}</h2>
-//     <p class="main__block__entry-body">${data.content}</p>
-//     <p class="main__block__entry-category">In ${data.category}</p>
-//     <button id="edit" onclick="editPost(${data})">Edit</button>
-//     <button id="delete" onclick="deletePost(${data._id})">Delete</button>
-//   `);
-// };
+
 
 const goToNewEntry = () => {
   loggedInView();
@@ -57,16 +48,9 @@ const goToNewEntry = () => {
 
 
 
-const editPost = (data) => {
-  loggedInView();
-  $(".main__block").html(new_entry);
-  $("#categories").val(`${data.category}`);
-  $("#title").val(`${data.title}`);
-  $("#body").val(`${data.content}`);
 
-  $('#addPost').submit(updatePost(data._id));
   
-}
+
 
 
 

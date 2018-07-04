@@ -95,11 +95,11 @@ button:hover {
 .nav{
     display:flex;
     justify-content: flex-end;
-   
+    overflow: hidden;
     color: white;
 }
 
-.nav__list{
+.nav a{
    /* width: 30%; */
     list-style:none;
     margin: 0;
@@ -116,10 +116,10 @@ button:hover {
 }
 
 @media only screen and (min-width: 625px){
-   .nav__list { font-size: 13px;
+   .nav a { font-size: 13px;
    }
 }
-.nav__list li{
+.nav a{
 
 height: 30px;
 display: flex;
@@ -134,68 +134,62 @@ padding: 5px;
 
 
 
-.nav__list a {
+.nav a {
     color: white;
 }
 
-.nav__list a:hover {
+.nav a:hover {
     color:#0a3947;
 }
-.nav__list__categories {
+.nav__categories {
     display: flex;
     flex-direction: column;
-    
+    overflow:hidden;
     
 
 }
 
-.nav__list__categories__title {
-   display: flex;
+.nav__categories .nav__categories__title {
+   
    position: relative;
+   color: white;
    
 }
-
 
 
 .fa-sort-down {
     margin-left: 4px;
 }
-.nav__list__categories__submenu {
+.nav__categories__submenu {
     display: none;
-    position: relative;
-  
+    position: absolute;
+    flex-direction: column; 
+    z-index: 1;
+    margin-top: 30px;
+
 }
 
-.nav__list__categories__submenu ul {
+.nav__categories__submenu a {
   margin: 0;
-  padding: 0;
+  padding: 5px;
   min-width: 140px;
-  /* background-color:#728DA5; */
-  position: absolute;
-  margin-left: -70px;
-  margin-top: 5px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   background-color: white;
-
-
-}
-.nav__list__categories__submenu li{
-    margin: 0;
     display: flex;
     justify-content: flex-start;
-}
-.nav__list__categories__submenu li a {
     color: #333;
+
 }
 
-.nav__list__categories__submenu li:hover {
+
+.nav__categories__submenu a:hover {
     background-color:lightgrey;
     color: white;
 
 }
 
-.show {
-  
+
+.nav__categories:hover .nav__categories__submenu {
     display: flex;
 }
 
@@ -234,6 +228,11 @@ main{
     font-weight: 400;
 
 }
+.main__block__post-summary-snippet {
+max-height: 100px;
+overflow: hidden;
+text-overflow: '';
+}
 .main__block__post-summary__info{
     display: flex;
     justify-content: space-between;
@@ -243,6 +242,9 @@ main{
     font-size: 12px;
 }
 
+.main__block__post-summary__view-more:hover {
+    color: #6AAFBA;
+}
 /* New entry page */
 
 .main__block__new-entry{

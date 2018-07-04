@@ -20,27 +20,14 @@ const goToLoginPage = () => {
   const loggedInView = () => {
     $('.body').empty();
     $('.body').append(logged_in_template);
-    $("#nav-categories").click(function() {
-      $("#categories-dropdown").toggleClass('show');
-      // window.onclick = function(e) {
-      //   if (!e.target.matches($("#nav-categories"))) {
-      //     if ($("#categories-dropdown").hasClass('show')) {
-      //       ($("#categories-dropdown").removeClass('show'));
-      //     }
-      //   }
-      // };
-    });
-    
-    
-    $(".nav__list__add-entry").click(goToNewEntry);
-   
-    
+
+  //nav bar  
+  
+    $(".nav__add-entry").click(goToNewEntry);
 
     $(".home").on('click', function() {
       IS_LOGGED_IN ? getData(displayRecentPosts) : goToLoginPage();
     });
-
-    $('#logout').click(logout);
 
     $("#practice-sessions").on('click', function() {
         getCategory('Practice Sessions');
@@ -57,7 +44,7 @@ const goToLoginPage = () => {
       $("#other").on('click', function() {
         getCategory('Other');
       });
-      
-
-    
   }
+  $('#logout').click(logout);
+
+  
