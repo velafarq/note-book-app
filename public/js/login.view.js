@@ -22,15 +22,16 @@ const goToLoginPage = () => {
     $('.body').append(logged_in_template);
     $("#nav-categories").click(function() {
       $("#categories-dropdown").toggleClass('show');
+      // window.onclick = function(e) {
+      //   if (!e.target.matches($("#nav-categories"))) {
+      //     if ($("#categories-dropdown").hasClass('show')) {
+      //       ($("#categories-dropdown").removeClass('show'));
+      //     }
+      //   }
+      // };
     });
     
-    // window.onclick = function(e) {
-    //   if (!e.target.matches($categories)) {
-    //     if ($($categoryDropDown).hasClass('show')) {
-    //       $($categoryDropDown).removeClass('show');
-    //     }
-    //   }
-    // };
+    
     $(".nav__list__add-entry").click(goToNewEntry);
    
     

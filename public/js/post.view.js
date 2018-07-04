@@ -1,6 +1,6 @@
 
 const displayRecentPosts = (data) => {
-  console.log(data);
+  loggedInView();
   $(".main__block").empty();
   for (index in data) {
     $(".main__block").append(
@@ -20,6 +20,7 @@ const displayRecentPosts = (data) => {
 
 const categoryFilter = (data, specificCategory) => {
   const categoryData = data.filter(post => post.category === specificCategory);
+  loggedInView();
   $(".main__block").empty();
 
   for (index in categoryData) {
@@ -49,13 +50,15 @@ const categoryFilter = (data, specificCategory) => {
 // };
 
 const goToNewEntry = () => {
+  loggedInView();
   $(".main__block").html(new_entry);
   $('#addPost').submit(addPost);
 };
 
 
+
 const editPost = (data) => {
-  
+  loggedInView();
   $(".main__block").html(new_entry);
   $("#categories").val(`${data.category}`);
   $("#title").val(`${data.title}`);

@@ -20,7 +20,8 @@ const login = e => {
       .then(data => {
         
         localStorage.setItem('token', data.token);
-
+        loggedInView();
+        getData(displayRecentPosts);
       })
       .catch(error => {
         $(".main__block").empty();
@@ -28,7 +29,7 @@ const login = e => {
           <p>Oops, your login was not successful!</p>
          `);
       });
-      getData(displayRecentPosts);
+      
   };
   
   const register = e => {
@@ -53,7 +54,7 @@ const login = e => {
       .then(data => {
       
         localStorage.setItem('token', data.token);
-        $(".main__block").empty();
+       loggedInView();
         $(".main__block").html(`Welcome! Click <a href="#" onlick="goToNewEntry()">here</a>to begin a new post.`)
         
       })
