@@ -44,7 +44,8 @@ const goToLoginPage = () => {
       $("#other").on('click', function() {
         getCategory('Other');
       });
+      $('#logout').click(logout);
   }
-  $('#logout').click(logout);
+  
 
   
