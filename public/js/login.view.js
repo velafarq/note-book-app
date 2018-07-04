@@ -26,7 +26,7 @@ const goToLoginPage = () => {
     $(".nav__add-entry").click(goToNewEntry);
 
     $(".home").on('click', function() {
-      IS_LOGGED_IN ? getData(displayRecentPosts) : goToLoginPage();
+       getData(displayRecentPosts)
     });
 
     $("#practice-sessions").on('click', function() {
