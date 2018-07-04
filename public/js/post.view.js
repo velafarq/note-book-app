@@ -1,5 +1,6 @@
 
 const displayRecentPosts = (data) => {
+  console.log(data);
   $(".main__block").empty();
   for (index in data) {
     $(".main__block").append(

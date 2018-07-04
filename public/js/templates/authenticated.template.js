@@ -20,7 +20,7 @@ const logged_in_template = $(`<header class="header">
                         </ul>
                     </div>
             </li>
-                <li><a href="#" id="logout" onclick="goToLoginPage()">LOGOUT</a></li>
+                <li><a href="#" id="logout">LOGOUT</a></li>
             </ul>
         </nav>  
 </section>

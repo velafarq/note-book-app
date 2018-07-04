@@ -33,12 +33,13 @@ const goToLoginPage = () => {
     // };
     $(".nav__list__add-entry").click(goToNewEntry);
    
+    
 
     $(".home").on('click', function() {
       IS_LOGGED_IN ? getData(displayRecentPosts) : goToLoginPage();
     });
 
-    $('#logout').click(IS_LOGGED_IN ? logout : goToLoginPage);
+    $('#logout').click(logout);
 
     $("#practice-sessions").on('click', function() {
         getCategory('Practice Sessions');

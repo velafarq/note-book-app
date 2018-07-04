@@ -46,9 +46,9 @@ describe('posts API resource', function() {
         return runServer();
     });
 
-    // beforeEach(function() {
-    //     return seedPostData();
-    // });
+    beforeEach(function() {
+        return seedPostData();
+    });
 
     // afterEach(function () {
     //     return tearDownDb();

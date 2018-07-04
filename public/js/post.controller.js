@@ -10,7 +10,7 @@ const addPost = e => {
       content,
     });
   
-    fetch(`${BASE_URL}/posts`, {
+    fetch('http://localhost:8080/posts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -72,7 +72,8 @@ const addPost = e => {
     })
       .then(res => res.json())
       .then(callback);
-  }
+  
+}
   
   const getCategory = (category) => {
     fetch(`${BASE_URL}/posts`, {
