@@ -45,8 +45,8 @@ const addPost = e => {
       <h2 class="main__block__entry-heading">${data.title}</h2>
       <p class="main__block__entry-body">${data.content}</p>
       <p class="main__block__entry-category">In ${data.category}</p>
-      <button id="edit" value="${data._id}">Edit</button>
-      <button id="delete" value="${data._id}">Delete</button>
+      <button class="main__block__entry-btn" id="edit" value="${data._id}">Edit</button>
+      <button class="main__block__entry-btn" id="delete" value="${data._id}">Delete</button>
     `);
 
     $('#delete').click(deletePost);

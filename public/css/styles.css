@@ -235,8 +235,8 @@ text-overflow: ellipsis;
 white-space:nowrap;
 }
 .main__block__post-summary__info{
-    display: flex;
-    justify-content: space-between;
+    font-style: italic;
+
 }
 
 .main__block__post-summary__view-more {
@@ -245,6 +245,16 @@ white-space:nowrap;
 
 .main__block__post-summary__view-more:hover {
     color: #6AAFBA;
+}
+
+.main__block__entry-category {
+    font-style: italic;
+}
+
+.main__block__entry-btn {
+    width: 100px;
+    height: 35px;
+    
 }
 /* New entry page */
 
