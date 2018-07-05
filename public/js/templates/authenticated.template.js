@@ -25,6 +25,7 @@ const logged_in_template = $(`<header class="header">
 </section>
 </header>
 <main class="main">
+<div id="results"></div>
 <section class="main__block">
 </section>
 </main>`);

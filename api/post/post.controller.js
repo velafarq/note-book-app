@@ -83,7 +83,7 @@ const updatePost = (req, res) => {
     Post
     .findOneAndRemove({ _id: req.params.id, author: user._id })
     .then(() => {
-      res.status(204).json({message: 'Post successfully deleted'});
+      res.status(200).json({message: 'Post successfully deleted'});
     })
     .catch(err => {
       console.error(err);

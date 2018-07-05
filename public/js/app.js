@@ -15,7 +15,7 @@ $("#practice-sessions").on('click', function() {
     getCategory('Other');
   });
   
-//   $logout.text(IS_LOGGED_IN ? 'LOGOUT' : 'LOGIN');
+
 $('#logout').click(IS_LOGGED_IN ? logout : goToLoginPage);
 $("#login").click(goToLoginPage);
 $("#register").click(goToRegisterPage());
@@ -25,7 +25,6 @@ $(".nav__list__add-entry").click(goToNewEntry);
 
   //dropdown menu in nav
 
-  // $("#login-user").submit(login);
 
 
   $(".home").on('click', function() {

@@ -16,21 +16,27 @@ const login = e => {
       "Content-Type": "application/json",
       },
     })
-      .then(res => res.json())
-      .then(data => {
-        
-        localStorage.setItem('token', data.token);
-        loggedInView();
-        getData(displayRecentPosts);
-      })
-      .catch(error => {
-        $(".main__block").empty();
-        $(".main__block").append(`
-          <p>Oops, your login was not successful!</p>
+    .then(res => {
+      if (!res.ok) {
+        throw res;
+        return;
+      }
+      return res.json();
+    })
+    .then(data => {
+      localStorage.setItem('token', data.token);
+      loggedInView();
+      getData(displayRecentPosts);
+    })
+    .catch(error => {
+      $('.main__login').append(`
+          <p class="failed-login">Oops, your login was not successful!</p>
          `);
-      });
-      
-  };
+      setTimeout(() => {
+        $('.main__login .failed-login').hide();
+      }, 3000);
+    });
+};
   
   const register = e => {
     e.preventDefault();
@@ -50,19 +56,27 @@ const login = e => {
         'Content-Type': 'application/json',
       },
     })
-      .then(res => res.json())
+    .then(res => {
+      if (!res.ok) {
+        throw res;
+        return;
+      }
+      return res.json();
+    })
       .then(data => {
       
         localStorage.setItem('token', data.token);
        loggedInView();
-        $(".main__block").html(`Welcome! Click <a href="#" onlick="goToNewEntry()">here</a>to begin a new post.`)
+        $(".main__block").html(`Welcome!`)
         
       })
       .catch(error => {
-        $(".main__block").empty();
-        $(".main__block").append(`
-          <p>Oops, your register was not successful!</p>
-       `);
+        $('.main__login').append(`
+          <p class="failed-login">Oops, your register was not successful! Please try a different email.</p>
+         `);
+      setTimeout(() => {
+        $('.main__login .failed-login').hide();
+      }, 3000);
       });
   };
   

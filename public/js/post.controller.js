@@ -20,10 +20,15 @@ const addPost = e => {
     })
       .then(res => res.json())
       .then(data => {
-        $(".main__block").empty();
-        $(".main__block").append(`
-        <p>Your post was submitted successfuly!</p> 
-        `);
+      
+        getData(displayRecentPosts);
+
+        $("#results").html('Success!');
+      setTimeout(() => {
+        $('#results').hide();
+      }, 4000);
+       
+       
       })
       .catch(error => {
         $(".main__block").empty();
@@ -40,9 +45,13 @@ const addPost = e => {
       <h2 class="main__block__entry-heading">${data.title}</h2>
       <p class="main__block__entry-body">${data.content}</p>
       <p class="main__block__entry-category">In ${data.category}</p>
-      <button id="edit" onclick="editPost('${data._id}')">Edit</button>
-      <button id="delete" onclick="deletePost('${data._id}')">Delete</button>
+      <button id="edit" value="${data._id}">Edit</button>
+      <button id="delete" value="${data._id}">Delete</button>
     `);
+
+    $('#delete').click(deletePost);
+
+  $('#edit').click(editPost);
   };
   
   const getPostById = id => {
@@ -55,7 +64,7 @@ const addPost = e => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+       
         goToEntry(data);
       })
       .catch(err => console.log(err));
@@ -90,20 +99,25 @@ const addPost = e => {
   
 
 
- const updatePost = (e) => {
-   e.preventDefault()
-   const id = localStorage.getItem('id');
+  
+
+function updatePost(e) {
+
+  const _id = $(this).attr('value');
+
+   e.preventDefault();
+
    const title = $('#addPost').find('#title').val();
     const category = $('#addPost').find('#categories').val();
     const content = $('#addPost').find('#body').val();
     const data = JSON.stringify({
-      id,
+      _id,
       title,
       category,
       content,
     });
   
-    fetch(`${BASE_URL}/posts/${id}`, {
+    fetch(`${BASE_URL}/posts/${_id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -111,12 +125,13 @@ const addPost = e => {
       },
       body: data,
     })
-      .then(res => res.json())
-      .then(data => {
-        $(".main__block").empty();
-        $(".main__block").append(`
-        <p>Your post was submitted successfuly!</p> 
-        `);
+      .then(() => {
+        getData(displayRecentPosts);
+
+        $("#results").html('Success!');
+      setTimeout(() => {
+        $('#results').hide();
+      }, 4000);
       })
       .catch(error => {
         $(".main__block").empty();
@@ -126,8 +141,34 @@ const addPost = e => {
       });
   };
 
-const deletePost = id => {
+  function editPost(e) {
+    e.preventDefault();
+    loggedInView();
+  const id = $(this).val();
+    fetch(`${BASE_URL}/posts/${id}`, {
+      method: 'GET',
+      headers: new Headers({
+        Authorization: `bearer ${localStorage.getItem('token')}`,
+        'Content-Type': 'application/json',
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+  
+    $(".main__block").html(new_entry);
+    $("#categories").val(`${data.category}`);
+    $("#title").val(`${data.title}`);
+    $("#body").val(`${data.content}`);
+  
+    $('#addPost').attr('value', id);
+    $('#addPost').submit(updatePost);
+    
+      })
+      .catch(err => console.log(err));
+  }
 
+function deletePost() {
+const id = $(this).val();
   fetch(`${BASE_URL}/posts/${id}`, {
     method: 'DELETE',
     headers: new Headers({
@@ -137,39 +178,18 @@ const deletePost = id => {
   })
   .then(res => res.json())
   .then(data => {
-    $(".main__block").empty();
-    $(".main__block").append(`
-    <p>Your post has been deleted.</p>
-   `)
+    getData(displayRecentPosts);
+
+        $("#results").html('Success!');
+      setTimeout(() => {
+        $('#results').hide();
+      }, 4000);   
+   })
    .catch(error => {
     $(".main__block").empty();
     $(".main__block").append(`
   <p>There was an error deleting your post. Please try again.</p>`);
-   })
-  })
-};
+  });
+}
 
-const editPost = (id) => {
-  localStorage.setItem('id', id);
-  loggedInView();
 
-  fetch(`${BASE_URL}/posts/${id}`, {
-    method: 'GET',
-    headers: new Headers({
-      Authorization: `bearer ${localStorage.getItem('token')}`,
-      'Content-Type': 'application/json',
-    }),
-  })
-    .then(res => res.json())
-    .then(data => {
-
-  $(".main__block").html(new_entry);
-  $("#categories").val(`${data.category}`);
-  $("#title").val(`${data.title}`);
-  $("#body").val(`${data.content}`);
-
-  $('#addPost').submit(updatePost);
-  
-    })
-    .catch(err => console.log(err));
-};
