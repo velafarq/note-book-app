@@ -9,14 +9,14 @@ const login = (req, res) => {
       .then(response => {
         const userFound = response;
         if (!userFound) {
-          return res.status(400).json(new Error({ message: 'User cannot be found!' }));
+          return res.status(400).json({ message: 'User cannot be found!' });
         }
   
         if (userFound.password === user.password) {
           const token = jsonwebtoken.sign({ user: userFound }, JWT_SECRET);
           return res.status(200).json({ token })
         }
-        return res.status(401).json(new Error({ message: 'Password mismatch' }));
+        return res.status(401).json({ message: 'Password mismatch' });
       })
       .catch(error => {
         res.status(401).json({ message: 'Password mismatch' });

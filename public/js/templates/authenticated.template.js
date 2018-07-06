@@ -9,7 +9,7 @@ const logged_in_template = $(`<header class="header">
               <a href="#" class="nav__add-entry">NEW ENTRY</a>
              <a href="#" class="home">HOME</a>
                     <div class="nav__categories">
-                    <a href="#" class="nav__categories__title" id="nav-categories">CATEGORIES <i class="fas fa-sort-down"></i></a>
+                    <a href="#" class="nav__categories__title" id="nav-categories"><span>CATEGORIES</span><i class="fas fa-sort-down"></i></a>
                     <div class="nav__categories__submenu">
                         <a href="#" id='practice-sessions'>Practice Sessions</a>
                         <a href="#" id='lessons'>Lessons</a>

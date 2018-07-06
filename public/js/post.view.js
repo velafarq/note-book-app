@@ -5,7 +5,7 @@ const displayRecentPosts = (data) => {
   for (index in data) {
     $(".main__block").append(
       ` <section class="main__block__post-summary">
-        <h3 class="main__block__post-summary__summary-heading">${data[index].title}</h3>
+        <div class="main__block__image"><img class="img" src="../public/test.jpeg"><h3 class="main__block__post-summary__summary-heading">${data[index].title}</h3></div>
         <p class="main__block__post-summary__info">In: ${
           data[index].category
         }</p>

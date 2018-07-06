@@ -59,6 +59,7 @@ describe('posts API resource', function() {
     });
 
     let token = '';
+    let userId = 
 
     describe('GET endpoint', function () {
 
@@ -71,13 +72,14 @@ describe('posts API resource', function() {
                     expect(response.status).to.equal(200);
                     expect(response.body).to.be.a('object');
                     expect(response.body).to.have.key('token');
+                    
                     token = response.body.token;
                     
                     
                 });
         });
 
-        it('should return all posts', function() {
+        it('should return all posts from a specific user', function() {
             
             let res;
             return chai.
@@ -88,7 +90,7 @@ describe('posts API resource', function() {
                 res = response;
                 expect(res.status).to.equal(200);
                 expect(res.body).to.have.lengthOf.at.least(1);  
-                return Post.count({author: "5b3400a1d8b51f337f754498"});
+                return Post.count({author: "5b37d6df9b4eb968b0303bc5"});
             })
             .then(count => {
                 expect(res.body).to.have.lengthOf(count);
@@ -97,13 +99,41 @@ describe('posts API resource', function() {
 
     });
 
+    describe('GET by Id endpoint', function() {
+        
+        it('should find a post based on its unique id', function () {
+            let foundPost = {};
+            
+            Post.findOne({author: "5b37d6df9b4eb968b0303bc5"})
+            .then(post => {
+                foundPost._id = post._id;
+
+                 return chai
+                .request(app)
+                .get(`/posts/${foundPost._id}`)
+                .set('authorization', `bearer ${token}`)
+                .then(res => {
+                    expect(res.status).to.equal(200);
+                    expect(res.body._id).to.equal(post._id);
+                    expect(res.body._id).to.equal(foundPost._id);
+                    expect(res.body.author).to.equal(post.author);
+                    expect(res.body.title).to.equal(post.title);
+                    expect(res.body.category).to.equal(post.category);
+                    expect(res.body.content).to.equal(post.conetnt);
+
+                });
+            });
+
+        });
+    });
+
     describe('POST endpoint', function() {
   
         it('should add a new post to the database', function () {
             const newPost = {
                 title: faker.lorem.sentence(),
                 content: faker.lorem.text(),
-                category: "Performance"
+                category: "Performance",
             };
             
         return chai
@@ -116,7 +146,7 @@ describe('posts API resource', function() {
             expect(response.status).to.equal(201);
             expect(response.body).to.include.key('_id');
 
-            return Post.findOne({_id: response.body._id, author: "5b3400a1d8b51f337f754498"});
+            return Post.findOne({_id: response.body._id, author: "5b37d6df9b4eb968b0303bc5"});
         })
         .then(post => {
             expect(post.category).to.equal(newPost.category);
@@ -136,7 +166,7 @@ describe('posts API resource', function() {
             };
 
             return Post
-            .findOne({author: "5b3400a1d8b51f337f754498"})
+            .findOne({author: "5b37d6df9b4eb968b0303bc5"})
             .then(post => {
                 updatedPost._id = post._id;
 
@@ -158,7 +188,7 @@ describe('posts API resource', function() {
             let post;
 
             return Post
-            .findOne({author: "5b3400a1d8b51f337f754498"})
+            .findOne({author: "5b37d6df9b4eb968b0303bc5"})
             .then(_post => {
                 post = _post;
                 return chai
@@ -167,7 +197,7 @@ describe('posts API resource', function() {
                 .set('authorization', `bearer ${token}`)
             })
             .then(res => {
-                expect(res.status).to.equal(204);
+                expect(res.status).to.equal(200);
                 return Post.findById(post._id);
             })
             .then(_post => {
