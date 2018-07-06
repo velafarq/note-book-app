@@ -29,3 +29,4 @@ $(".home").on('click', function() {
 });
 
 $body.html(IS_LOGGED_IN ? loggedInView : goToLoginPage);
+

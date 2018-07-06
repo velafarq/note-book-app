@@ -9,7 +9,7 @@ const logged_in_template = $(`<header class="header">
               <a href="#" class="nav__add-entry">NEW ENTRY</a>
              <a href="#" class="home">HOME</a>
                     <div class="nav__categories">
-                    <a href="#" class="nav__categories__title" id="nav-categories"><span>CATEGORIES</span><i class="fas fa-sort-down"></i></a>
+                    <a href="#" class="nav__categories__title" id="nav-categories">CATEGORIES<i class="fas fa-sort-down"></i></a>
                     <div class="nav__categories__submenu">
                         <a href="#" id='practice-sessions'>Practice Sessions</a>
                         <a href="#" id='lessons'>Lessons</a>
@@ -22,10 +22,12 @@ const logged_in_template = $(`<header class="header">
                <a href="#" id="logout">LOGOUT</a>
       
         </nav>  
+        
 </section>
 </header>
 <main class="main">
-<div id="results"></div>
+<div id="category_results"></div>
 <section class="main__block">
+
 </section>
 </main>`);

@@ -18,9 +18,12 @@ describe('My root url is working', function() {
     });
 
     before(function() {
-       
+
         return User
-        .create({email: fakeEmail, password: fakePassword});
+            .create({
+                email: fakeEmail,
+                password: fakePassword
+            });
     });
 
     after(function() {
@@ -33,7 +36,10 @@ describe('My root url is working', function() {
         return chai
             .request(app)
             .post('/auth/login')
-            .send({ email: fakeEmail, password: fakePassword })
+            .send({
+                email: fakeEmail,
+                password: fakePassword
+            })
             .then(response => {
                 expect(response.status).to.equal(200);
                 expect(response.body).to.be.a('object');
@@ -44,17 +50,12 @@ describe('My root url is working', function() {
 
     it('should get a 200 status code and html', function() {
         return chai.request(app)
-        .get('/')
-        .set('authorization', `bearer ${token}`)
-        .then(function(res){
-            expect(res.status).to.equal(200);
-            expect(res).to.be.html;
+            .get('/')
+            .set('authorization', `bearer ${token}`)
+            .then(function(res) {
+                expect(res.status).to.equal(200);
+                expect(res).to.be.html;
 
-        });
+            });
     });
-    
 });
-
-// Add one test Add one test that verifies that when 
-// you hit up the root url for your client, 
-// you get a 200 status code and HTML.
