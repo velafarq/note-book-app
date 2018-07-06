@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,54 +10,31 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Bad+Script" rel="stylesheet"> 
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="body">
-        <header class="header">
-            <section class="header__container">
-                <div class="header__container__title">
-                    <h1 class="header__title">Note <i class="fas fa-music"></i> Book</h1>
-                    <p class="header__subtitle">A Musician's Journal</p> 
-                </div>
-                <nav class="nav">
-                        <ul class="nav__list">
-                            <li><a href="#" class="nav__list__add-entry">NEW ENTRY</a></li>
-                            <li><a href="#" id="home">HOME</a></li>
-                            <li class="nav__list__categories">
-                                <a href="#" class="nav__list__categories__title" id="categories">CATEGORIES <i class="fas fa-sort-down"></i></a>
-                                <div class="nav__list__categories__submenu" id="categories-dropdown">
-                                    <ul>
-                                        <li><a href="#" id='practice-sessions'>Practice Sessions</a></li>
-                                        <li><a href="#" id='lessons'>Lessons</a></li>
-                                        <li><a href="#" id='performances'>Performances</a></li>
-                                        <li><a href="#" id='master-classes'>Master Classes</a></li>
-                                        <li><a href="#" id='other'>Other</a></li>
-                                    </ul>
-                                </div>
-                        </li>
-                            <li><a href="#" id="login">LOGOUT</a></li>
-                        </ul>
-                    </nav>
-                
-            </section>
-            </header>
 
-    <main class="main">
-    
-        <section class="main__blocks">
-            
-        <section class="left-block"></section>
-     
-    
-   
-</section>
+<body>
+    <section class="body"></section>
 
 
+    <script src="./js/globals.js"></script>
 
-</main>
-<script src="posts-view.js"></script>
-<script src="login.js"></script>
-<script src="entry-view.js"></script>
+    <script src="./js/templates/authenticated.template.js"></script>
+
+    <script src="./js/templates/unathenticated.template.js"></script>
+
+    <script src="./js/templates/new_entry.template.js"></script>
+
+    <script src="./js/post.controller.js"></script>
+
+    <script src="./js/post.view.js"></script>
+
+    <script src="./js/login.controller.js"></script>
+
+    <script src="./js/login.view.js"></script>
+
+    <script src="./js/app.js"></script>
 </body>
-</html>
 
+</html>

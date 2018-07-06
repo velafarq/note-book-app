@@ -6,7 +6,8 @@ const postSchema = mongoose.Schema({
     author: mongoose.Schema.ObjectId,
     title: String, 
     content: String, 
-    category: String
+    category: String,
+    created: { type: Date, default: Date.now }
 });
 
 

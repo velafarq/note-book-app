@@ -14,6 +14,7 @@ require('./config/app.config')(app);
 require('./config/errors.config')(app);
 require('./config/routers.config')(app);
 
+
 app.get('/', (req, res) => {
   res.sendFile(_dirname + './public/index.html');
 });
