@@ -48,4 +48,3 @@ const register_template = $(`<header class="header">
       </footer>
 </section>
 </main>`);
-

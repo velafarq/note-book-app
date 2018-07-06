@@ -1,13 +1,26 @@
 const chai = require('chai');
 const expect = chai.expect;
 const chaiHttp = require('chai-http');
+const faker = require('faker');
+const User  = require('../api/user/user.model');
 chai.use(chaiHttp);
 
+const { TEST_DATABASE_URL } = require('../config/globals.config');
 const { runServer, app, closeServer } = require('../server');
+
+//fake user info
+const fakeEmail = faker.internet.email();
+const fakePassword = faker.internet.password();
 
 describe('My root url is working', function() {
     before(function() {
-        return runServer();
+        return runServer(TEST_DATABASE_URL);
+    });
+
+    before(function() {
+       
+        return User
+        .create({email: fakeEmail, password: fakePassword});
     });
 
     after(function() {
@@ -20,7 +33,7 @@ describe('My root url is working', function() {
         return chai
             .request(app)
             .post('/auth/login')
-            .send({ email: 'some@email.com', password: 'some_password' })
+            .send({ email: fakeEmail, password: fakePassword })
             .then(response => {
                 expect(response.status).to.equal(200);
                 expect(response.body).to.be.a('object');

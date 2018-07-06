@@ -10,8 +10,8 @@
 body {
     padding: 0;
     margin: 0;
-   background-color: rgb(231, 223, 223);
-   background-image: url("../public/tomatoes.jpg");
+   background-color: white;
+  
 }
 a:hover, .fa-caret-right:hover {
     color: #333;
@@ -50,8 +50,7 @@ button:hover {
     display: flex;
     justify-content: center;
     width:100vw;
-    /* background-color:#6AAFBA; */
-    background-color: rgb(13, 104, 156);
+    background-color:#6AAFBA;
     color: white;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     justify-content: center;
@@ -227,6 +226,7 @@ main{
     width: 100%;
     color: #333;
     background-color: #FAFAFA;
+    border-radius: 5px;
    
 }
 
@@ -249,24 +249,32 @@ white-space:nowrap;
 
 }
 
-.main__block__image {
+.post-summary__heading {
     display: flex;
-    flex-direction: column;
-    border-radius: 20%;
+    text-align:center;
+    
+    
+}
+
+
+.post-summary__heading .fa-bookmark {
+    
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+    margin-left: 5px;
+    display: none;
+    color: silver;
+    
 }
 
 @media only screen and (min-width: 730px) {
-    .main__block__image {
+    .post-summary__heading .fa-bookmark{
+        display:flex;
         flex-direction: row;
+        
     }
-}
-
-.img {
-    max-height: 50px;
-    max-width: 50px;
-    margin-right: 20px;
-    margin-left: 5px;
-    margin-top: 10px;
 }
 
 .main__block__post-summary__view-more {

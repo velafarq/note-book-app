@@ -1,70 +1,26 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const faker = require('faker');
+const mongoose = require('mongoose');
+const expect = chai.expect;
 
+
+
+const { TEST_DATABASE_URL } = require('../config/globals.config');
+const User  = require('../api/user/user.model');
 const { runServer, app, closeServer } = require('../server');
 
 chai.use(chaiHttp);
-const expect = chai.expect;
-const { TEST_DATABASE_URL } = require('../config/globals.config');
 
 describe('User authentication', () => {
 
-    describe('a login function', () => {
-        before(function() {
-          
-          return runServer();
-          
-        });
-      
-        after(function() {
-            return closeServer();
-        });
-      
-        it('should return 200 and a token on successful login', () => {
-          return chai
-            .request(app)
-            .post('/auth/login')
-            .send({ email: 'some@email.com', password: 'some_password' })
-            .then(response => {
-              expect(response.status).to.equal(200);
-              expect(response.body).to.be.a('object');
-              expect(response.body).to.have.key('token');
-            });
-        });
-      
-        it('should return 401 and an error message when incorrect password', () => {
-          return chai
-            .request(app)
-            .post('/auth/login')
-            .send({ email: 'some@email.com', password: 'wrong_password' })
-            .then(response => {
-              expect(response.status).to.equal(401);
-              expect(response.body).to.have.key('message');
-              expect(response.body.message).to.equal('Password mismatch');
-            });
-        });
-      
-          it('should return 400 and an error message when user not found', () => {
-              return chai
-                  .request(app)
-                  .post('/auth/login')
-                  .send({ email: 'no@user.com' })
-                  .then(response => {
-                      expect(response.status).to.equal(400);
-                      expect(response.body).to.have.key('message');
-                      expect(response.body.message).to.equal('User cannot be found!');
-                  });
-          });
-      });
-      
-      describe('a register function', () => {
+      describe('a register and login function', () => {
           before(function() {
-              return runServer();
+              return runServer(TEST_DATABASE_URL);
             });
           
             after(function() {
-                return closeServer();
+                return closeServer(TEST_DATABASE_URL);
             });
             const fakeEmail = faker.internet.email();
             const fakePassword = faker.internet.password();
@@ -84,6 +40,20 @@ describe('User authentication', () => {
             });
       
             let token = '';
+
+            it('should return 400 and an error message if the email is already taken', () => {
+                
+                return chai
+                .request(app)
+                .post('/auth/register')
+                .send({ email: fakeEmail, password: fakePassword })
+                .then (response => {
+                    expect(response.status).to.equal(400);
+                    expect(response.body).to.contain.key('message');
+                    expect(response.body.message).to.equal('Try a different email');
+                });
+            });
+
       
             it('should return 200 and a token on successful login', () => {
                 return chai
@@ -98,19 +68,30 @@ describe('User authentication', () => {
                     });
             });
       
-            it('should allow the the newly registered user in the db to login', () => {
-              return chai
+
+          it('should return 401 and an error message when incorrect password', () => {
+            return chai
               .request(app)
               .post('/auth/login')
-              .set('authorization', `bearer ${token}`)
-              .send({ email: fakeEmail, password: fakePassword })
+              .send({ email: fakeEmail, password: 'wrong_password' })
               .then(response => {
-                  expect(response.status).to.equal(200);
-                  expect(response.body).to.be.a('object');
-                  expect(response.body).to.have.key('token');
-              
-            });
+                expect(response.status).to.equal(401);
+                expect(response.body).to.have.key('message');
+                expect(response.body.message).to.equal('Password mismatch');
+              });
           });
+
+          it('should return 400 and an error message when user not found', () => {
+            return chai
+                .request(app)
+                .post('/auth/login')
+                .send({ email: 'no@user.com' })
+                .then(response => {
+                    expect(response.status).to.equal(400);
+                    expect(response.body).to.have.key('message');
+                    expect(response.body.message).to.equal('User cannot be found!');
+                });
+        });
       });
       
 

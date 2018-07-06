@@ -5,13 +5,23 @@ const chaiHttp = require('chai-http');
 const faker = require('faker');
 const mongoose = require('mongoose');
 
+const jsonwebtoken = require('jsonwebtoken');
+
+const JWT_SECRET = '12345';
+
 const { runServer, app, closeServer } = require('../server');
 
 const { Post } = require('../api/post/post.model');
-// const { TEST_DATABASE_URL } = require('../config/globals.config');
+const User = require('../api/user/user.model');
+const { TEST_DATABASE_URL } = require('../config/globals.config');
 
 chai.use(chaiHttp);
 const expect = chai.expect;
+
+//fake user info
+const fakeEmail = faker.internet.email();
+const fakePassword = faker.internet.password();
+let testUser = {};
 
 function tearDownDb() {
     return new Promise((resolve, reject) => {
@@ -22,7 +32,7 @@ function tearDownDb() {
     });
   }
 
-  
+ 
   function seedPostData() {
     console.info('seeding post data');
     const seedData = [];
@@ -30,44 +40,58 @@ function tearDownDb() {
     const randomCategory = categories[Math.floor(Math.random() * categories.length)];
     for (let i = 1; i <= 10; i++) {
       seedData.push({
-        author: "5b3400a1d8b51f337f754498",
+        author: testUser._id,
         title: faker.lorem.sentence(),
         content: faker.lorem.text(),
         category: randomCategory
       });
     }
-    // this will return a promise
+ 
     return Post.insertMany(seedData);
   } 
 
 
 describe('posts API resource', function() {
     before(function() {
-        return runServer();
+        return runServer(TEST_DATABASE_URL);
     });
 
-    beforeEach(function() {
+    before(function() {
+        
+        return User
+        .create({email: fakeEmail, password: fakePassword})
+        .then(user => {
+            testUser._id = user._id;
+            
+
+        });
+ 
+    });
+
+
+    before(function() {
+        
         return seedPostData();
     });
 
-    // afterEach(function () {
-    //     return tearDownDb();
-    // });
+    after(function () {
+        return tearDownDb();
+    });
 
     after(function() {
         return closeServer();
     });
 
     let token = '';
-    let userId = 
+ 
 
     describe('GET endpoint', function () {
-
+        seedPostData();
         it('should return 200 and a token on successful login', () => {
             return chai
                 .request(app)
                 .post('/auth/login')
-                .send({ email: 'some@email.com', password: 'some_password' })
+                .send({ email: fakeEmail, password: fakePassword })
                 .then(response => {
                     expect(response.status).to.equal(200);
                     expect(response.body).to.be.a('object');
@@ -90,7 +114,7 @@ describe('posts API resource', function() {
                 res = response;
                 expect(res.status).to.equal(200);
                 expect(res.body).to.have.lengthOf.at.least(1);  
-                return Post.count({author: "5b37d6df9b4eb968b0303bc5"});
+                return Post.count({author: testUser._id});
             })
             .then(count => {
                 expect(res.body).to.have.lengthOf(count);
@@ -104,7 +128,7 @@ describe('posts API resource', function() {
         it('should find a post based on its unique id', function () {
             let foundPost = {};
             
-            Post.findOne({author: "5b37d6df9b4eb968b0303bc5"})
+            Post.findOne({author: testUser._id})
             .then(post => {
                 foundPost._id = post._id;
 
@@ -142,11 +166,12 @@ describe('posts API resource', function() {
         .set('authorization', `bearer ${token}`)
         .send(newPost)
         .then(response => {
-            console.log(response.body);
+            
             expect(response.status).to.equal(201);
-            expect(response.body).to.include.key('_id');
+            expect(response.body).to.include.keys('_id');
+            expect(response.body._id).to.not.be.null;
 
-            return Post.findOne({_id: response.body._id, author: "5b37d6df9b4eb968b0303bc5"});
+            return Post.findOne({_id: response.body._id, author: testUser._id});
         })
         .then(post => {
             expect(post.category).to.equal(newPost.category);
@@ -166,7 +191,7 @@ describe('posts API resource', function() {
             };
 
             return Post
-            .findOne({author: "5b37d6df9b4eb968b0303bc5"})
+            .findOne({author: testUser._id})
             .then(post => {
                 updatedPost._id = post._id;
 
@@ -188,7 +213,7 @@ describe('posts API resource', function() {
             let post;
 
             return Post
-            .findOne({author: "5b37d6df9b4eb968b0303bc5"})
+            .findOne({author: testUser._id})
             .then(_post => {
                 post = _post;
                 return chai

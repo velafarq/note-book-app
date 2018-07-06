@@ -30,7 +30,7 @@ const login = (req, res) => {
     .then(response => {
       const userFound = response;
       if (userFound) {
-        return res.status(400).json(new Error({ message: 'Try a different email' }));
+        return res.status(400).json({ message: 'Try a different email' });
       }
       else {
         User.create({email: newUser.email, password: newUser.password})
