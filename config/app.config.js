@@ -16,7 +16,7 @@ module.exports = app => {
     app.use(cors())
     app.use(morgan('common'));
   
-    app.use(express_jwt({ secret: JWT_SECRET }).unless({ path: ['/auth/login', '/auth/register'] })
+    app.use(express_jwt({ secret: JWT_SECRET }).unless({ path: ['/auth/login', '/auth/register', '/'] })
 );
 
     app.use(express.static('public'));
