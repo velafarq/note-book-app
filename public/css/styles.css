@@ -306,7 +306,7 @@ main{
 }
 
 .main__block__new-entry__category{
-    font-style:italic;
+    font-family: 'Bad Script', cursive;
 }
 
 .main__block__new-entry__category-list {

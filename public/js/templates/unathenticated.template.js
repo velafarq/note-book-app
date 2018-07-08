@@ -22,7 +22,7 @@ const login_template = $(`
                 <p>Or <a href="#" id="register">Register</a></p>
               </footer>
     </section>
-    <p class="main__login__info">A journal to help you remember your thoughts from your daily practice sessions, lessons, and performances.</p>
+    <p class="main__login__info">A journal to help you remember thoughts from your daily practice sessions, lessons, and performances.</p>
 </main>`);
 
 

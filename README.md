@@ -1,4 +1,4 @@
-# Key Ingredient #
+# Note Book #
 
 A journaling web app to help you remember your thoughts from your daily practice sessions, lessons, and performances.
 
