@@ -10,6 +10,8 @@ const app = express();
 
 const path = require('path');
 
+const moment = require('moment');
+
 const JWT_SECRET = '12345';
 
 module.exports = app => {
