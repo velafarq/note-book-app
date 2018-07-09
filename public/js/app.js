@@ -28,5 +28,5 @@ $(".home").on('click', function() {
   IS_LOGGED_IN ? getData(displayRecentPosts) : goToLoginPage();
 });
 
-$body.html(IS_LOGGED_IN ? loggedInView : goToLoginPage);
+$(".body").html(IS_LOGGED_IN ? getData(displayRecentPosts) : goToLoginPage());
 
