@@ -1,3 +1,4 @@
+const IS_LOGGED_IN = !!localStorage.getItem('token');
 const $body = $('.body');
 
 const $logout = $('#logout');
@@ -27,5 +28,5 @@ const $title = $("#title");
 const $textArea = $("#body");
 
 
-const IS_LOGGED_IN = !!localStorage.getItem('token');
+
 const BASE_URL = 'http://localhost:8080';
