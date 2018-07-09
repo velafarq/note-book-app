@@ -6,7 +6,8 @@ const displayRecentPosts = (data) => {
   $(".main__block").empty();
   for (index in data) {
    let date = new Date(data[index].created);
-    date.toDateString(); 
+   moment(date).format("MMMM Do YYYY");   
+    // date.toDateString(); 
     $("#category_results").html(`<h3> My Posts</h3>`)
      
       $(".main__block").append(
