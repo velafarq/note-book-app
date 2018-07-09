@@ -19,10 +19,10 @@ app.get('/', (req, res) => {
   res.sendFile(_dirname + './public/index.html');
 });
 
-function runServer() {
+function runServer(databaseUrl = DATABASE_URL, port = PORT) {
   return new Promise((resolve, reject) => {
     mongoose.connect(
-      DATABASE_URL,
+      databaseUrl,
       err => {
         if (err) {
           return reject(err);
@@ -57,7 +57,7 @@ function closeServer() {
 }
 
 if (require.main === module) {
-  runServer(DATABASE_URL).catch(err => console.error(err));
+  runServer().catch(err => console.error(err));
 }
 
 module.exports = { runServer, app, closeServer };
