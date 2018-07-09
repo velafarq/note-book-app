@@ -1,5 +1,5 @@
 const new_entry = $(`
-<form action="" class="main__block__new-entry" id="addPost">
+<form action="" class="main__block__new-entry" id="addPost" role="form">
         <p class="main__block__new-entry__category">Choose a category:</p>
         <select name="categories" id="categories" class="main__block__new-entry__category-list">
             <option value="Practice Sessions">Practice Session</option>

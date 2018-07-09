@@ -1,5 +1,5 @@
 const login_template = $(`
-<header class="header">
+<header class="header" role="banner">
             <section class="header__login">
                 <div class="header__container__title">
                     <h1 class="header__title">Note <i class="fas fa-music"></i> Book</h1>
@@ -10,7 +10,7 @@ const login_template = $(`
             <img class="piano" src='./../public/images/piano.jpg'>
 <main class="main__login"> 
     <section class=login-box>
-        <form action="" class= "login-box__form" id="login-user" role="form" method="post">
+        <form action="" class= "login-box__form" id="login-user" role="form" method="post" role="form">
                 <h2>Login</h2>
                 <label for="email">Email</label>
                 <input type="email" placeholder="my@email.com" name="user-email" id="user-email" required/>
@@ -27,7 +27,7 @@ const login_template = $(`
 
 
 
-const register_template = $(`<header class="header">
+const register_template = $(`<header class="header" role="banner">
 <section>
     <div class="header__container__title">
         <h1 class="header__title">Note <i class="fas fa-music"></i> Book</h1>
@@ -36,9 +36,9 @@ const register_template = $(`<header class="header">
 </section>
 </header>
 <img class="piano" src='./../public/images/piano.jpg'>
-<main class="main__login"> 
+<main class="main__login" role="main"> 
 <section class=login-box>
-<form action="" class= "login-box__form" id="register-new-user" role="form" method="post">
+<form action="" class= "login-box__form" id="register-new-user" role="form" method="post" role="form" aria-live="assertive">
         <h2>Register</h2>
         <label for="email">Email</label>
         <input type="email" placeholder="my@email.com" name="user-email" id="user-email" required/>

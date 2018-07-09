@@ -4,7 +4,7 @@ const logged_in_template = $(`<header class="header">
         <h1 class="header__title">Note <i class="fas fa-music"></i> Book</h1>
         <p class="header__subtitle">A Musician's Journal</p> 
     </div>
-    <nav class="nav">
+    <nav class="nav" role="navigation">
             
               <a href="#" class="nav__add-entry">NEW ENTRY</a>
              <a href="#" class="home">HOME</a>
