@@ -10,7 +10,7 @@ const addPost = e => {
       content,
   });
 
-  fetch('http://localhost:8080/posts', {
+  fetch('/posts', {
           method: 'POST',
           headers: {
               'Content-Type': 'application/json',
@@ -55,7 +55,7 @@ const goToEntry = data => {
 };
 
 const getPostById = id => {
-  fetch(`${BASE_URL}/posts/${id}`, {
+  fetch(`/posts/${id}`, {
           method: 'GET',
           headers: new Headers({
               Authorization: `bearer ${localStorage.getItem('token')}`,
@@ -72,7 +72,7 @@ const getPostById = id => {
 
 
 const getData = (callback) => {
-  fetch(`${BASE_URL}/posts`, {
+  fetch(`/posts`, {
           method: 'GET',
           headers: new Headers({
               Authorization: `bearer ${localStorage.getItem('token')}`,
@@ -85,7 +85,7 @@ const getData = (callback) => {
 }
 
 const getCategory = (category) => {
-  fetch(`${BASE_URL}/posts`, {
+  fetch(`/posts`, {
           method: 'GET',
           headers: new Headers({
               Authorization: `bearer ${localStorage.getItem('token')}`,
@@ -116,7 +116,7 @@ function updatePost(e) {
       content,
   });
 
-  fetch(`${BASE_URL}/posts/${_id}`, {
+  fetch(`/posts/${_id}`, {
           method: 'PUT',
           headers: {
               'Content-Type': 'application/json',
@@ -144,7 +144,7 @@ function editPost(e) {
   e.preventDefault();
   loggedInView();
   const id = $(this).val();
-  fetch(`${BASE_URL}/posts/${id}`, {
+  fetch(`/posts/${id}`, {
           method: 'GET',
           headers: new Headers({
               Authorization: `bearer ${localStorage.getItem('token')}`,
@@ -168,7 +168,7 @@ function editPost(e) {
 
 function deletePost() {
   const id = $(this).val();
-  fetch(`${BASE_URL}/posts/${id}`, {
+  fetch(`/posts/${id}`, {
           method: 'DELETE',
           headers: new Headers({
               Authorization: `bearer ${localStorage.getItem('token')}`,

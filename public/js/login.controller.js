@@ -9,7 +9,7 @@ const login = e => {
       password,
   });
 
-  fetch(`${BASE_URL}/auth/login`, {
+  fetch(`/auth/login`, {
           method: 'POST',
           body: data,
           headers: {
@@ -49,7 +49,7 @@ const register = e => {
   });
 
 
-  fetch(`${BASE_URL}/auth/register`, {
+  fetch(`/auth/register`, {
           method: 'POST',
           body: data,
           headers: {
