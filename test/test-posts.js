@@ -106,7 +106,7 @@ describe('posts API resource', function() {
         });
 
         it('should return all posts from a specific user', function() {
-
+            console.log('test user', testUser);
             let res;
             return chai.
             request(app)

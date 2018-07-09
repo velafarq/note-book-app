@@ -2,7 +2,6 @@ const { Post } = require('./post.model');
 
 const getPosts = (req, res) => {
   const { user } = req;
-  console.log(user._id);
   Post
       .find({
           author: user._id
@@ -68,7 +67,7 @@ const createPost = (req, res) => {
 };
 
 const updatePost = (req, res) => {
-  const { user } = req.user;
+  const { user } = req;
 
   if (!(req.params.id && req.body._id && req.params.id === req.body._id)) {
       res.status(400).json({
@@ -102,7 +101,7 @@ const updatePost = (req, res) => {
 }
 
 const deletePost = (req, res) => {
-  const { user } = req.user;
+  const { user } = req;
   Post
       .findOneAndRemove({
           _id: req.params.id,
