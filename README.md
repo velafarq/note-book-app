@@ -24,6 +24,10 @@ Category view
 
 [Live Demo](https://calm-escarpment-51268.herokuapp.com/)
 
+demo user details:
+email: some@email.com
+password: some_password
+
 ## Summary ##
 
 Note Book is a blogging web application targeted towards musicians. It is a personal journal made for a student musician to chronicle their practice sessions, lessons, master classes, performances, and other notes. The journal's aim is to assist the musician to remember useful experiences so that they can refer to them later. 
