@@ -7,7 +7,7 @@ const login_template = $(`
                 </div>
             </section>
             </header>
-            <img class="piano" src='./../public/images/piano.jpg'>
+            <img class="piano" src='images/piano.jpg'>
 <main class="main__login"> 
     <section class=login-box>
         <form action="" class= "login-box__form" id="login-user" role="form" method="post" role="form">
@@ -35,7 +35,7 @@ const register_template = $(`<header class="header" role="banner">
     </div>
 </section>
 </header>
-<img class="piano" src='./../public/images/piano.jpg'>
+<img class="piano" src='images/piano.jpg'>
 <main class="main__login" role="main"> 
 <section class=login-box>
 <form action="" class= "login-box__form" id="register-new-user" role="form" method="post" role="form" aria-live="assertive">

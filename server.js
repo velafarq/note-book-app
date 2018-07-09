@@ -8,6 +8,8 @@ const { DATABASE_URL, PORT } = require('./config/globals.config');
 
 const app = express();
 
+const path = require('path');
+
 let server;
 
 require('./config/app.config')(app);
@@ -16,7 +18,7 @@ require('./config/routers.config')(app);
 
 
 app.get('/', (req, res) => {
-  res.sendFile(_dirname + './public/index.html');
+  res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 function runServer(databaseUrl = DATABASE_URL, port = PORT) {

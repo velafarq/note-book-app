@@ -17,9 +17,7 @@ const login = (req, res) => {
           }
 
           if (userFound.password === user.password) {
-              const token = jsonwebtoken.sign({
-                  user: userFound
-              }, JWT_SECRET);
+              const token = jsonwebtoken.sign({email: userFound.email, _id: userFound._id}, JWT_SECRET);
               return res.status(200).json({
                   token
               })
@@ -53,9 +51,9 @@ const register = (req, res) => {
                       password: newUser.password
                   })
                   .then(response => {
-                      const token = jsonwebtoken.sign({
-                          user: newUser
-                      }, JWT_SECRET);
+                     
+                      const token = jsonwebtoken.sign({email: response.email, _id: response._id}, JWT_SECRET);
+                    
                       return res.status(200).json({
                           token
                       })

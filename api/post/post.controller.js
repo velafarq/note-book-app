@@ -1,7 +1,7 @@
 const { Post } = require('./post.model');
 
 const getPosts = (req, res) => {
-  const { user } = req.user;
+  const { user } = req;
   console.log(user._id);
   Post
       .find({
@@ -19,7 +19,7 @@ const getPosts = (req, res) => {
 };
 
 const getPostById = (req, res) => {
-  const { user } = req.user;
+  const { user } = req;
   Post
       .findOne({
           _id: req.params.id,
@@ -38,7 +38,8 @@ const getPostById = (req, res) => {
 
 const createPost = (req, res) => {
   const requiredFields = ['title', 'content', 'category'];
-  const { user } = req.user;
+  const { user } = req;
+  console.log('hellooooo', user);
   for (let i = 0; i < requiredFields.length; i++) {
       const field = requiredFields[i];
       if (!(field in req.body)) {
