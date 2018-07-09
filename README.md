@@ -1,6 +1,6 @@
 # Note Book #
 
-A journaling web app to help you remember your thoughts from your daily practice sessions, lessons, and performances.
+A journaling web app to help you remember thoughts from your daily practice sessions, lessons, and performances.
 
 ## Screenshots ##
 
@@ -22,7 +22,7 @@ Category view
 
 ## Demo ##
 
-[Live Demo](https://velafarq.github.io/Key-Ingredient/)
+[Live Demo](https://calm-escarpment-51268.herokuapp.com/)
 
 ## Summary ##
 
