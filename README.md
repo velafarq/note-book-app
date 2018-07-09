@@ -24,8 +24,8 @@ Category view
 
 [Live Demo](https://calm-escarpment-51268.herokuapp.com/)
 
-demo user details:
-email: some@email.com
+### Demo user details: ######
+email: some@email.com<br/>
 password: some_password
 
 ## Summary ##
