@@ -2,8 +2,8 @@ const displayRecentPosts = data => {
   loggedInView();
   $(".main__block").empty();
   for (index in data) {
-    let date = new Date(data[index].created);
-    date.toDateString();
+    let date = new Date(data[index].created).toDateString();
+
     $("#category_results").html(`<h3> My Posts</h3>`);
 
     $(".main__block").append(
@@ -48,6 +48,7 @@ const categoryFilter = (data, specificCategory) => {
 
 const goToNewEntry = () => {
   loggedInView();
+
   $(".main__block").html(new_entry);
   $("#category_results").empty();
   $("#addPost").submit(addPost);
