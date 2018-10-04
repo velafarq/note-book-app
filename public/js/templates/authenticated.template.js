@@ -28,6 +28,5 @@ const logged_in_template = $(`<header class="header">
 <main class="main">
 <div id="category_results"></div>
 <section class="main__block">
-
 </section>
 </main>`);
