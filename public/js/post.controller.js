@@ -116,6 +116,8 @@ function updatePost(e) {
   const content = $("#addPost")
     .find("#body")
     .val();
+
+  $("#addPost")[0].reset();
   const data = JSON.stringify({
     _id,
     title,
