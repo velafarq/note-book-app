@@ -23,9 +23,13 @@ const login_template = $(`
               </footer>
     </section>
     <p class="main__login__info">A journal to help you remember thoughts from your daily practice sessions, lessons, and performances.</p>
+<div>
+    <p class="demo-user-title">Demo user credentials:</p>
+    <p class="demo-user">email: some@email.com</p>
+    <p class="demo-user">password: some_password</p>
+    </div>
+    
 </main>`);
-
-
 
 const register_template = $(`<header class="header" role="banner">
 <section>

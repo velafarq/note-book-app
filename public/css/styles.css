@@ -406,6 +406,9 @@ button:hover {
 }
 
 @media only screen and (min-width: 800px) {
+  .main__login {
+    padding-top: 0;
+  }
   .login-box {
     padding: 15px;
     max-width: 50%;
@@ -420,4 +423,12 @@ button:hover {
 .main__login__info {
   font-family: "Bad Script", cursive;
   font-size: 20px;
+}
+
+.demo-user-title {
+  font-weight: bold;
+}
+
+.demo-user {
+  margin: 0;
 }
