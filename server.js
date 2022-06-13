@@ -3,6 +3,7 @@
 const express = require('express');
 
 const mongoose = require('mongoose');
+require('dotenv/config') 
 
 const { DATABASE_URL, PORT } = require('./config/globals.config');
 
