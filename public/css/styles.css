@@ -338,6 +338,7 @@ input[type="submit"] {
   cursor: pointer;
   background-color: #6aafba;
   border-radius: 2px;
+  color: white
 }
 button:hover {
   color: white;
